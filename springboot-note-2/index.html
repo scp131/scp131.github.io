@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="theme-color" content="#3F51B5">
+        <meta name="keywords" content="Scp131, 后端开发, 个人博客,java,spring,算法,idea,docker, material design">
+        <meta name="description" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Scp131 Blog">
+        <meta property="og:url" content="https://scp131.github.io">
+        <meta property="og:site_name" content="Scp131 Blog">
+        <meta property="og:description" content="">
+        <title>SpringBoot备忘录(数据库操作) | Scp 131</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="canonical" href="https://scp131.github.io">
+
+<link rel="styleSheet"  href="/css/style.min.css"/></head>
+    <body><div id="loading" class="active"></div>
+<aside id="menu"  class="hide"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.webp)">
+      <div class="brand">
+        <a href="" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.webp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kmiss</h5>
+          <a href="mailto:1355337315@qq.com" title="1355337315@qq.com" class="mail">1355337315@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+ 
+            <li class="waves-block waves-effect ">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/categories/">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect ">
+              <a href="/tags/">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/links/">
+                <i class="icon icon-lg icon-link"></i>
+                Links
+              </a>
+            </li>
+            
+            
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/scp131" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<main id="main">
+          <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">SpringBoot备忘录(数据库操作)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="请输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    <div class="container fade-scale">
+        <h1 class="title">SpringBoot备忘录(数据库操作)</h1>
+        <h5 class="subtitle">
+            
+            
+            
+              <time datetime="2018-08-18 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
+                2018年08月18日
+              </time>
+            
+        </h5>
+    </div>
+    
+    
+</header>
+<div class="container body-wrap"><div class="domHide">
+   <nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用mybatis-generator插件">使用Mybatis generator插件</a></li>
+  </ul>
+</nav>
+</div>
+
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+    </nav>
+</aside>
+  <article id="post-multipart-x-mixed-replace" class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+    
+      <h1 class="post-card-title">SpringBoot备忘录(数据库操作)</h1><div class="post-meta">
+             
+     
+     <time class="post-time" title="2018-08-18 00:00:00 &#43;0000 UTC" datetime="2018-08-18 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
+        2018年08月18日
+     </time>
+     
+     
+     <ul class="article-category-list">
+     <li class="article-category-list-item">
+            <a class="article-category-list-link" href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E5%A4%87%E5%BF%98%E5%BD%95/">我的备忘录</a>
+          </li>
+        
+        
+     </ul>
+         
+     
+     <span id="busuanzi_container_page_pv" title="文章总阅读量" >
+        <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv">233</span>
+    </span>
+</div><div class="post-content" id="post-content" itemprop="postContent">
+          <p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/09/19/wIQzvD.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<table>
+<thead>
+<tr>
+<th>Bean转换类</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PO</td>
+<td>持久层对象，面向数据库，只存在基本数据类型和String，一般一个PO对应一张表</td>
+</tr>
+<tr>
+<td>BO</td>
+<td>业务层对象，对PO进行业务处理，并将处理的结果进行封装</td>
+</tr>
+<tr>
+<td>VO</td>
+<td>表现层对象，面向web界面，将BO进行包装为web页面需要渲染的数据结构</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用mybatis-generator插件">使用Mybatis generator插件</h2>
+<p>在设置界面安装<mark>better-mybatis-generator</mark>插件</p>
+<p>点开Database控制界面，找到已经保存的Database中的table，右击选择<mark>mabatis-generate</mark>会弹出下图的界面</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/09/25/0CsJbQ.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/09/21/wqPM8g.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">primary</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">jdbc-url</span><span class="p">:</span><span class="w"> </span><span class="l">jdbc:mysql://127.0.0.1:3306/testdb?serverTimezone=GMT&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false</span><span class="w">
+</span><span class="w">      </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span><span class="w">      </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">root</span><span class="w">
+</span><span class="w">      </span><span class="nt">driver-class-name</span><span class="p">:</span><span class="w"> </span><span class="l">com.mysql.cj.jdbc.Driver</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="nd">@MapperScan</span><span class="o">(</span><span class="n">baseBackage</span><span class="o">=</span><span class="s">&#34;com.jun.dao.db1&#34;</span><span class="o">,</span><span class="n">sqlSessionTemplateRef</span><span class="o">=</span><span class="s">&#34;primarySqlSessionTemplate&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">primaryDataSourceConfig</span><span class="o">{</span>
+    
+    
+    <span class="nd">@Bean</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;primaryDataSource&#34;</span><span class="o">)</span>
+    <span class="nd">@ConfigurationProperties</span><span class="o">(</span><span class="n">prefix</span> <span class="o">=</span> <span class="s">&#34;spring.datasource.primary&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">DataSource</span> <span class="nf">primaryDataSource</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="n">DataSourceBuilder</span><span class="o">.</span><span class="na">create</span><span class="o">().</span><span class="na">build</span><span class="o">();</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Bean</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;primarySqlSessionFactory&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">SqlSessionFactory</span> <span class="nf">primarySqlSessionFactory</span><span class="o">(</span>
+    <span class="nd">@Qualifier</span><span class="o">(</span><span class="s">&#34;primaryDataSource&#34;</span><span class="o">)</span> <span class="n">DataSource</span> <span class="n">datasource</span><span class="o">){</span>
+        <span class="n">SqlSessionFactoryBean</span> <span class="n">bean</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBean</span><span class="o">();</span>
+        <span class="n">bean</span><span class="o">.</span><span class="na">setDataSource</span><span class="o">(</span><span class="n">datasource</span><span class="o">);</span>
+        <span class="n">bean</span><span class="o">.</span><span class="na">setMappperLocation</span><span class="o">(</span><span class="k">new</span> <span class="n">PathMatchingResourcePatternResolver</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">getResources</span><span class="o">(</span><span class="s">&#34;classpath:mapper/db1/*.xml&#34;</span><span class="o">));</span>
+        <span class="k">return</span> <span class="n">bean</span><span class="o">.</span><span class="na">getObject</span><span class="o">();</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Bean</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;primarySqlSessionTemplate&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">SqlSessionTemplate</span> <span class="nf">primarySqlSessionTemplate</span><span class="o">(</span>
+    <span class="err">@</span><span class="o">(</span><span class="s">&#34;primarySqlSessionFactory&#34;</span><span class="o">)</span> <span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span><span class="o">){</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">SqlSessionTemplate</span><span class="o">(</span><span class="n">SqlSessionFactory</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    
+    <span class="nd">@Bean</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#34;secondDataSourceTransactionManager&#34;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">DataSourceTransactionManager</span> <span class="nf">secondDataSourceTransactionManager</span><span class="o">(</span>
+            <span class="nd">@Qualifier</span><span class="o">(</span><span class="s">&#34;secondDataSource&#34;</span><span class="o">)</span> <span class="n">DataSource</span> <span class="n">dataSource</span><span class="o">){</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">DataSourceTransactionManager</span><span class="o">(</span><span class="n">dataSource</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><table>
+<thead>
+<tr>
+<th></th>
+<th>更新丢失</th>
+<th>脏读</th>
+<th>虚读</th>
+<th>幻读</th>
+<th>实现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read uncommited</td>
+<td></td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+<td>排他写锁</td>
+</tr>
+<tr>
+<td>Read commited</td>
+<td></td>
+<td></td>
+<td>√</td>
+<td>√</td>
+<td>瞬时共享读锁与排他锁</td>
+</tr>
+<tr>
+<td>Repeatable read</td>
+<td></td>
+<td></td>
+<td></td>
+<td>√</td>
+<td>共享读锁与排他写锁</td>
+</tr>
+<tr>
+<td>Serializable</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Read uncommited		A读取到B未提交的数据</li>
+<li>Read commited             A读取到B修改前后的两次数据</li>
+<li>Repeatable read            A读取到添加新数据前后数据的总数</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>cn.smallbun.screw<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>screw-core<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0.3<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.freemarker<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>freemarker<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.3.28<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ScrewTest</span> <span class="o">{</span>
+
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testScrewTest</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">HikariConfig</span> <span class="n">hikariConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HikariConfig</span><span class="o">();</span>
+        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setDriverClassName</span><span class="o">(</span><span class="s">&#34;com.mysql.cj.jdbc.Driver&#34;</span><span class="o">);</span>
+        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setJdbcUrl</span><span class="o">(</span><span class="s">&#34;jdbc:mysql://127.0.0.1:3306/testdb2?serverTimezone=GMT&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&#34;</span><span class="o">);</span>
+        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">&#34;root&#34;</span><span class="o">);</span>
+        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">&#34;root&#34;</span><span class="o">);</span>
+
+        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">addDataSourceProperty</span><span class="o">(</span><span class="s">&#34;useInformationSchema&#34;</span><span class="o">,</span><span class="s">&#34;true&#34;</span><span class="o">);</span>
+        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setMaximumPoolSize</span><span class="o">(</span><span class="n">2</span><span class="o">);</span>
+        <span class="n">hikariConfig</span><span class="o">.</span><span class="na">setMaximumPoolSize</span><span class="o">(</span><span class="n">5</span><span class="o">);</span>
+
+        <span class="n">DataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HikariDataSource</span><span class="o">(</span><span class="n">hikariConfig</span><span class="o">);</span>
+
+        <span class="n">EngineConfig</span> <span class="n">engineConfig</span> <span class="o">=</span> <span class="n">EngineConfig</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">fileOutputDir</span><span class="o">(</span><span class="s">&#34;e://&#34;</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">openOutputDir</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">fileType</span><span class="o">(</span><span class="n">EngineFileType</span><span class="o">.</span><span class="na">HTML</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">produceType</span><span class="o">(</span><span class="n">EngineTemplateType</span><span class="o">.</span><span class="na">freemarker</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+
+        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ignoreTableName</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">ignoreTableName</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;test_table&#34;</span><span class="o">);</span>
+
+        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ignorePrefix</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">ignorePrefix</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;test_&#34;</span><span class="o">);</span>
+
+        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ignoreSuffix</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">ignorePrefix</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">&#34;_test&#34;</span><span class="o">);</span>
+
+        <span class="n">ProcessConfig</span> <span class="n">processConfig</span> <span class="o">=</span> <span class="n">ProcessConfig</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">designatedTableName</span><span class="o">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;())</span>
+                <span class="o">.</span><span class="na">designatedTablePrefix</span><span class="o">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;())</span>
+                <span class="o">.</span><span class="na">designatedTableSuffix</span><span class="o">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;())</span>
+                <span class="o">.</span><span class="na">ignoreTableName</span><span class="o">(</span><span class="n">ignoreTableName</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">ignoreTablePrefix</span><span class="o">(</span><span class="n">ignorePrefix</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">ignoreTableSuffix</span><span class="o">(</span><span class="n">ignoreSuffix</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+
+        <span class="n">Configuration</span> <span class="n">configuration</span> <span class="o">=</span> <span class="n">Configuration</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">version</span><span class="o">(</span><span class="s">&#34;1.0.0&#34;</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">description</span><span class="o">(</span><span class="s">&#34;数据库文档设计&#34;</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">dataSource</span><span class="o">(</span><span class="n">dataSource</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">engineConfig</span><span class="o">(</span><span class="n">engineConfig</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">produceConfig</span><span class="o">(</span><span class="n">processConfig</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+        <span class="k">new</span> <span class="n">DocumentationExecute</span><span class="o">(</span><span class="n">configuration</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+      </div><blockquote class="post-copyright">
+  <div class="content">
+      <span class="post-time">
+        最后更新时间：
+        <time datetime="2018-08-18 00:00:00 &#43;0000 UTC" itemprop="dateUpdated">
+            2018年08月18日
+        </time>
+    </span>
+    <br>
+    原始链接：
+    <a href="https://scp131.github.io/springboot-note-2/" target="_blank" rel="external">
+      https://scp131.github.io/springboot-note-2/
+    </a>
+  </div>
+
+  <footer>
+      <a href="https://scp131.github.io/">
+          <img src="/img/avatar.webp" alt="Scp131">
+          Scp131
+      </a>
+  </footer>
+</blockquote><div class="post-footer" id="post-footer">
+<ul class="article-tag-list">
+&nbsp;
+      <li class="article-tag-list-item">
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/springboot/">
+            SpringBoot 
+          </a>
+        </li>
+      
+</ul><div class="page-share-wrap"><div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2fspringboot-note-2%2f&title=SpringBoot%e5%a4%87%e5%bf%98%e5%bd%95%28%e6%95%b0%e6%8d%ae%e5%ba%93%e6%93%8d%e4%bd%9c%29&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2fspringboot-note-2%2f&title=SpringBoot%e5%a4%87%e5%bf%98%e5%bd%95%28%e6%95%b0%e6%8d%ae%e5%ba%93%e6%93%8d%e4%bd%9c%29&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2fspringboot-note-2%2f" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=SpringBoot%e5%a4%87%e5%bf%98%e5%bd%95%28%e6%95%b0%e6%8d%ae%e5%ba%93%e6%93%8d%e4%bd%9c%29&url=https%3a%2f%2fscp131.github.io%2fspringboot-note-2%2f&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2fspringboot-note-2%2f" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+ 
+<a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+    <i class="icon icon-share-alt icon-lg"></i>
+  </a>    
+</div> </div>
+
+    </div><nav class="post-nav flex-row flex-justify-between ">
+      
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/springboot-note-1/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SpringBoot备忘录(基础应用)</h4>
+      </a>
+    </div><div class="waves-block waves-effect next">
+      <a href="/springboot-note-3/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">SpringBoot备忘录(前端)</h4>
+      </a>
+    </div></nav><div class="comments vcomment v" id="comments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#comments',
+        notify: 'false',
+        verify: 'false',
+        appId: "OIMzeDHmePmzFKoz8XjwiiIJ-gzGzoHsz",
+        appKey: "H5k568nOnKRYMa48PiCWQEk9",
+        avatar: "retro",
+        placeholder: "请填写邮箱信息以便及时收到回复哦(。・∀・)ノ",
+        pageSize: "10"
+    })
+</script></article>
+</div><footer class="footer">
+          
+    <div class="top">
+        <p>
+            <span>
+              <a href="/index.xml" target="_blank" class="rss" title="rss" rel="noopener noreffer me"><i class="icon icon-lg icon-rss"></i></a>
+            </span>
+            <span>
+              博客内容遵循 
+              <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a>
+            </span>
+        </p>
+    </div>
+    
+    <div class="bottom">
+        <p>
+          <span>Scp131&copy;2021
+                  
+          </span>
+          
+          <span>
+              
+              <a href="http://www.miitbeian.gov.cn/" target="_blank">豫ICP备123456789号-1</a>
+                
+              <br>
+              
+              Power by <a href="https://gohugo.io/" target="_blank">Hugo</a> 
+              Theme 
+              <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+          </span>
+        </p>
+    </div>
+</footer></main>
+        <div class="mask" id="mask"></div><a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light">
+  <span class="icon icon-lg icon-chevron-up"></span>
+</a><div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=&title=Scp%20131&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=&title=Scp%20131&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Scp%20131&url=&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    
+ <div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="/img/wx.png" alt="微信分享二维码">
+</div>
+
+</body><div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+<script type="application/javascript" src="/lib/waves/waves.min.js"></script>
+
+
+
+
+<script type="application/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script>
+
+
+<script type="text/javascript">
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true, SINGLE:  true  };
+</script>
+
+
+<script type="application/javascript" src="/js/main.min.js"></script>
+
+
+<script type="application/javascript" src="/js/search.min.js" async></script></html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="theme-color" content="#3F51B5">
+        <meta name="keywords" content="Scp131, 后端开发, 个人博客,java,spring,算法,idea,docker, material design">
+        <meta name="description" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Scp131 Blog">
+        <meta property="og:url" content="https://scp131.github.io">
+        <meta property="og:site_name" content="Scp131 Blog">
+        <meta property="og:description" content="">
+        <title>SpringBoot自动配置原理 | Scp 131</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="canonical" href="https://scp131.github.io">
+
+<link rel="styleSheet"  href="/css/style.min.css"/></head>
+    <body><div id="loading" class="active"></div>
+<aside id="menu"  class="hide"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.webp)">
+      <div class="brand">
+        <a href="" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.webp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kmiss</h5>
+          <a href="mailto:1355337315@qq.com" title="1355337315@qq.com" class="mail">1355337315@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+ 
+            <li class="waves-block waves-effect ">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/categories/">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect ">
+              <a href="/tags/">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/links/">
+                <i class="icon icon-lg icon-link"></i>
+                Links
+              </a>
+            </li>
+            
+            
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/scp131" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<main id="main">
+          <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">SpringBoot自动配置原理</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="请输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    <div class="container fade-scale">
+        <h1 class="title">SpringBoot自动配置原理</h1>
+        <h5 class="subtitle">
+            
+            
+            
+              <time datetime="2019-08-19 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
+                2019年08月19日
+              </time>
+            
+        </h5>
+    </div>
+    
+    
+</header>
+<div class="container body-wrap"><div class="domHide">
+   <nav id="TableOfContents"></nav>
+</div>
+
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+    </nav>
+</aside>
+  <article id="post-multipart-x-mixed-replace" class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+    
+      <h1 class="post-card-title">SpringBoot自动配置原理</h1><div class="post-meta">
+             
+     
+     <time class="post-time" title="2019-08-19 00:00:00 &#43;0000 UTC" datetime="2019-08-19 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
+        2019年08月19日
+     </time>
+     
+     
+     <ul class="article-category-list">
+     <li class="article-category-list-item">
+            <a class="article-category-list-link" href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E8%8F%9C%E9%B8%9F%E6%97%A5%E8%AE%B0/">我的菜鸟日记</a>
+          </li>
+        
+        
+     </ul>
+         
+     
+     <span id="busuanzi_container_page_pv" title="文章总阅读量" >
+        <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv">233</span>
+    </span>
+</div><div class="post-content" id="post-content" itemprop="postContent">
+          <p>将启动类作为切入点，启动类的代码如下</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoApplication</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">DemoApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div><p>这个类的被@SpringBootApplication所修饰，我们就将该注释作为切入点，分析SpringBootApplication自动配置过程，点开该注解发现他是一个包含很多注解的组合注解</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">TYPE</span><span class="o">)</span>
+<span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+<span class="nd">@Documented</span>
+<span class="nd">@Inherited</span>
+<span class="nd">@SpringBootConfiguration</span>
+<span class="nd">@EnableAutoConfiguration</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">excludeFilters</span> <span class="o">=</span> <span class="o">{</span> <span class="nd">@Filter</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">FilterType</span><span class="o">.</span><span class="na">CUSTOM</span><span class="o">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">TypeExcludeFilter</span><span class="o">.</span><span class="na">class</span><span class="o">),</span>
+		<span class="nd">@Filter</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">FilterType</span><span class="o">.</span><span class="na">CUSTOM</span><span class="o">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">AutoConfigurationExcludeFilter</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="o">})</span>
+</code></pre></div><p>该组合注解包含了@SpringBootConfiguration、@EnableAutoConfiguration、@ComponentScan三个注解（这三个注解足够去了解自动配置过程），在这三个注解中@EnableAutoConfiguration是我们最为关注的重点。从他的名字也可以看出他与自动配置有关，点开该注解发现他也是一个组合注解</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">TYPE</span><span class="o">)</span>
+<span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+<span class="nd">@Documented</span>
+<span class="nd">@Inherited</span>
+<span class="nd">@AutoConfigurationPackage</span>
+<span class="nd">@Import</span><span class="o">(</span><span class="n">AutoConfigurationImportSelector</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</code></pre></div><p>在这些注解中包含一个@Import注解，该注解用于给容器中导入组件，该注解传入了一个AutoConfigurationImportSelector类，这应该是我们寻找的目标，查看他的源码</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">selectImports</span><span class="o">(</span><span class="n">AnnotationMetadata</span> <span class="n">annotationMetadata</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">if</span> <span class="o">(!</span><span class="n">isEnabled</span><span class="o">(</span><span class="n">annotationMetadata</span><span class="o">))</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">NO_IMPORTS</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="n">AutoConfigurationMetadata</span> <span class="n">autoConfigurationMetadata</span> <span class="o">=</span> <span class="n">AutoConfigurationMetadataLoader</span>
+			<span class="o">.</span><span class="na">loadMetadata</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">beanClassLoader</span><span class="o">);</span>
+	<span class="n">AutoConfigurationEntry</span> <span class="n">autoConfigurationEntry</span> <span class="o">=</span> <span class="n">getAutoConfigurationEntry</span><span class="o">(</span><span class="n">autoConfigurationMetadata</span><span class="o">,</span>
+			<span class="n">annotationMetadata</span><span class="o">);</span>
+	<span class="k">return</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">toStringArray</span><span class="o">(</span><span class="n">autoConfigurationEntry</span><span class="o">.</span><span class="na">getConfigurations</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div><p>该类中有一个selectImports方法主要用于返回一个包含自动配置类的数组，在这个方法中又调用了</p>
+<p>getAutoConfigurationEntry这个方法，查看该方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">AutoConfigurationEntry</span> <span class="nf">getAutoConfigurationEntry</span><span class="o">(</span><span class="n">AutoConfigurationMetadata</span> <span class="n">autoConfigurationMetadata</span><span class="o">,</span>
+		<span class="n">AnnotationMetadata</span> <span class="n">annotationMetadata</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">if</span> <span class="o">(!</span><span class="n">isEnabled</span><span class="o">(</span><span class="n">annotationMetadata</span><span class="o">))</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">EMPTY_ENTRY</span><span class="o">;</span>
+	<span class="o">}</span>
+	<span class="n">AnnotationAttributes</span> <span class="n">attributes</span> <span class="o">=</span> <span class="n">getAttributes</span><span class="o">(</span><span class="n">annotationMetadata</span><span class="o">);</span>
+	<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">configurations</span> <span class="o">=</span> <span class="n">getCandidateConfigurations</span><span class="o">(</span><span class="n">annotationMetadata</span><span class="o">,</span> <span class="n">attributes</span><span class="o">);</span>
+	<span class="n">configurations</span> <span class="o">=</span> <span class="n">removeDuplicates</span><span class="o">(</span><span class="n">configurations</span><span class="o">);</span>
+	<span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">exclusions</span> <span class="o">=</span> <span class="n">getExclusions</span><span class="o">(</span><span class="n">annotationMetadata</span><span class="o">,</span> <span class="n">attributes</span><span class="o">);</span>
+	<span class="n">checkExcludedClasses</span><span class="o">(</span><span class="n">configurations</span><span class="o">,</span> <span class="n">exclusions</span><span class="o">);</span>
+	<span class="n">configurations</span><span class="o">.</span><span class="na">removeAll</span><span class="o">(</span><span class="n">exclusions</span><span class="o">);</span>
+	<span class="n">configurations</span> <span class="o">=</span> <span class="n">filter</span><span class="o">(</span><span class="n">configurations</span><span class="o">,</span> <span class="n">autoConfigurationMetadata</span><span class="o">);</span>
+	<span class="n">fireAutoConfigurationImportEvents</span><span class="o">(</span><span class="n">configurations</span><span class="o">,</span> <span class="n">exclusions</span><span class="o">);</span>
+	<span class="k">return</span> <span class="k">new</span> <span class="n">AutoConfigurationEntry</span><span class="o">(</span><span class="n">configurations</span><span class="o">,</span> <span class="n">exclusions</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><p>该方法中调用了getCandidateConfigurations这个方法去获取了所有配置的类名的信息列表，而他通过调用 SpringFactoriesLoader.loadFactoryNames() ，LoadFactoryNames又调用loadSpringFactories方法来扫描加载全部META-INF/spring.factories中的jar包，该文件中记录了有哪些配置类。然后PropertiesLoaderUtils把ClassLoader扫描到的包封装成properties对象，从properties中获取到EnableAutoConfiguration.class类（类名）对应的值，然后把他添加到容器中。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="nf">loadSpringFactories</span><span class="o">(</span><span class="nd">@Nullable</span> <span class="n">ClassLoader</span> <span class="n">classLoader</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">MultiValueMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="o">(</span><span class="n">MultiValueMap</span><span class="o">)</span><span class="n">cache</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">classLoader</span><span class="o">);</span>
+	<span class="k">if</span> <span class="o">(</span><span class="n">result</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+	<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="n">Enumeration</span><span class="o">&lt;</span><span class="n">URL</span><span class="o">&gt;</span> <span class="n">urls</span> <span class="o">=</span> <span class="n">classLoader</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">classLoader</span><span class="o">.</span><span class="na">getResources</span><span class="o">(</span><span class="s">&#34;META-INF/spring.factories&#34;</span><span class="o">)</span> <span class="o">:</span> <span class="n">ClassLoader</span><span class="o">.</span><span class="na">getSystemResources</span><span class="o">(</span><span class="s">&#34;META-INF/spring.factories&#34;</span><span class="o">);</span>
+			<span class="n">LinkedMultiValueMap</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedMultiValueMap</span><span class="o">();</span>
+
+			<span class="k">while</span><span class="o">(</span><span class="n">urls</span><span class="o">.</span><span class="na">hasMoreElements</span><span class="o">())</span> <span class="o">{</span>
+				<span class="n">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="o">(</span><span class="n">URL</span><span class="o">)</span><span class="n">urls</span><span class="o">.</span><span class="na">nextElement</span><span class="o">();</span>
+				<span class="n">UrlResource</span> <span class="n">resource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UrlResource</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+				<span class="n">Properties</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">PropertiesLoaderUtils</span><span class="o">.</span><span class="na">loadProperties</span><span class="o">(</span><span class="n">resource</span><span class="o">);</span>
+				<span class="n">Iterator</span> <span class="n">var6</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="na">entrySet</span><span class="o">().</span><span class="na">iterator</span><span class="o">();</span>
+
+				<span class="k">while</span><span class="o">(</span><span class="n">var6</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+					<span class="n">Entry</span><span class="o">&lt;?,</span> <span class="o">?&gt;</span> <span class="n">entry</span> <span class="o">=</span> <span class="o">(</span><span class="n">Entry</span><span class="o">)</span><span class="n">var6</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+					<span class="n">String</span> <span class="n">factoryTypeName</span> <span class="o">=</span> <span class="o">((</span><span class="n">String</span><span class="o">)</span><span class="n">entry</span><span class="o">.</span><span class="na">getKey</span><span class="o">()).</span><span class="na">trim</span><span class="o">();</span>
+					<span class="n">String</span><span class="o">[]</span> <span class="n">var9</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">commaDelimitedListToStringArray</span><span class="o">((</span><span class="n">String</span><span class="o">)</span><span class="n">entry</span><span class="o">.</span><span class="na">getValue</span><span class="o">());</span>
+					<span class="kt">int</span> <span class="n">var10</span> <span class="o">=</span> <span class="n">var9</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+
+					<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">var11</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">var11</span> <span class="o">&lt;</span> <span class="n">var10</span><span class="o">;</span> <span class="o">++</span><span class="n">var11</span><span class="o">)</span> <span class="o">{</span>
+						<span class="n">String</span> <span class="n">factoryImplementationName</span> <span class="o">=</span> <span class="n">var9</span><span class="o">[</span><span class="n">var11</span><span class="o">];</span>
+						<span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">factoryTypeName</span><span class="o">,</span> <span class="n">factoryImplementationName</span><span class="o">.</span><span class="na">trim</span><span class="o">());</span>
+					<span class="o">}</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+
+			<span class="n">cache</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">classLoader</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
+			<span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">var13</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Unable to load factories from location [META-INF/spring.factories]&#34;</span><span class="o">,</span> <span class="n">var13</span><span class="o">);</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>总结一下@EnableAutoConfiguration这个注解通过扫描所有jar包之中的spring.factories封装成properties，然后根据 EnableAutoConfiguration.class 类获取对应的值，根据值加载对应的自动配置类，注入到容器之中。
+<br/>
+<br/>
+现在我们把另外两个注解的含义补全，@SpringBootConfiguration 表明当前类是配置类,@ComponentScan 表明去扫描那些类,这两个注解结合@EnableAutoConfiguration共同完成了将配置类加载到容器的功能。
+<br/>
+<br/>
+下面我们来查看一个自动配置类HttpEncodingAutoConfiguration</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span><span class="o">(</span><span class="n">proxyBeanMethods</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+<span class="c1">//表明这是一个配置类
+</span><span class="c1"></span><span class="nd">@EnableConfigurationProperties</span><span class="o">(</span><span class="n">HttpProperties</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="c1">//
+</span><span class="c1"></span><span class="nd">@ConditionalOnWebApplication</span><span class="o">(</span><span class="n">type</span> <span class="o">=</span> <span class="n">ConditionalOnWebApplication</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">SERVLET</span><span class="o">)</span>
+<span class="c1">//判断当前容器是否是web容器
+</span><span class="c1"></span><span class="nd">@ConditionalOnClass</span><span class="o">(</span><span class="n">CharacterEncodingFilter</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="c1">//判断容器中是否有CharacterEncodingFilter这个类
+</span><span class="c1"></span><span class="nd">@ConditionalOnProperty</span><span class="o">(</span><span class="n">prefix</span> <span class="o">=</span> <span class="s">&#34;spring.http.encoding&#34;</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">&#34;enabled&#34;</span><span class="o">,</span> <span class="n">matchIfMissing</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="c1">//判断自定义配置中是否存在spring.http.encoding的配置，如果不存在默认为开启
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HttpEncodingAutoConfiguration</span> <span class="o">{</span>
+
+    <span class="c1">//和对应的配置文件建立关系
+</span><span class="c1"></span>	<span class="kd">private</span> <span class="kd">final</span> <span class="n">HttpProperties</span><span class="o">.</span><span class="na">Encoding</span> <span class="n">properties</span><span class="o">;</span>
+
+	<span class="kd">public</span> <span class="nf">HttpEncodingAutoConfiguration</span><span class="o">(</span><span class="n">HttpProperties</span> <span class="n">properties</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">properties</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="na">getEncoding</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Bean</span>
+	<span class="nd">@ConditionalOnMissingBean</span>
+    <span class="c1">//该类的某些值需要从上文定义的properties中获取
+</span><span class="c1"></span>	<span class="kd">public</span> <span class="n">CharacterEncodingFilter</span> <span class="nf">characterEncodingFilter</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">CharacterEncodingFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OrderedCharacterEncodingFilter</span><span class="o">();</span>
+		<span class="n">filter</span><span class="o">.</span><span class="na">setEncoding</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">properties</span><span class="o">.</span><span class="na">getCharset</span><span class="o">().</span><span class="na">name</span><span class="o">());</span>
+		<span class="n">filter</span><span class="o">.</span><span class="na">setForceRequestEncoding</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">properties</span><span class="o">.</span><span class="na">shouldForce</span><span class="o">(</span><span class="n">Type</span><span class="o">.</span><span class="na">REQUEST</span><span class="o">));</span>
+		<span class="n">filter</span><span class="o">.</span><span class="na">setForceResponseEncoding</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">properties</span><span class="o">.</span><span class="na">shouldForce</span><span class="o">(</span><span class="n">Type</span><span class="o">.</span><span class="na">RESPONSE</span><span class="o">));</span>
+		<span class="k">return</span> <span class="n">filter</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="o">.......</span>
+
+<span class="o">}</span>
+
+</code></pre></div><p>查看HttpProperties这个类中的属性即为用户可以自定义配置的属性，而这些属性的默认值记录在该jar包下面的/META-INF/里面的spring-configuration-metadata.json或者additional-spring-configuration-metadata.json中，下图是spring-configuration-metadata.json中关于字符集的设定，可以知道默认值为UTF-8</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;spring.http.encoding.charset&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;java.nio.charset.Charset&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;Charset of HTTP requests and responses. Added to the \&#34;Content-Type\&#34; header if not set explicitly.&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;sourceType&#34;</span><span class="p">:</span> <span class="s2">&#34;org.springframework.boot.autoconfigure.http.HttpProperties$Encoding&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;defaultValue&#34;</span><span class="p">:</span> <span class="s2">&#34;UTF-8&#34;</span>
+<span class="p">}</span><span class="err">,</span>
+</code></pre></div><p>当然更为简单的方法就是在application.properties或application.yml中使用代码提示来查看默认值了</p>
+
+      </div><blockquote class="post-copyright">
+  <div class="content">
+      <span class="post-time">
+        最后更新时间：
+        <time datetime="2019-08-19 00:00:00 &#43;0000 UTC" itemprop="dateUpdated">
+            2019年08月19日
+        </time>
+    </span>
+    <br>
+    原始链接：
+    <a href="https://scp131.github.io/springboot-auto/" target="_blank" rel="external">
+      https://scp131.github.io/springboot-auto/
+    </a>
+  </div>
+
+  <footer>
+      <a href="https://scp131.github.io/">
+          <img src="/img/avatar.webp" alt="Scp131">
+          Scp131
+      </a>
+  </footer>
+</blockquote><div class="post-footer" id="post-footer">
+<ul class="article-tag-list">
+&nbsp;
+      <li class="article-tag-list-item">
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/springboot/">
+            SpringBoot 
+          </a>
+        </li>
+      
+</ul><div class="page-share-wrap"><div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2fspringboot-auto%2f&title=SpringBoot%e8%87%aa%e5%8a%a8%e9%85%8d%e7%bd%ae%e5%8e%9f%e7%90%86&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2fspringboot-auto%2f&title=SpringBoot%e8%87%aa%e5%8a%a8%e9%85%8d%e7%bd%ae%e5%8e%9f%e7%90%86&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2fspringboot-auto%2f" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=SpringBoot%e8%87%aa%e5%8a%a8%e9%85%8d%e7%bd%ae%e5%8e%9f%e7%90%86&url=https%3a%2f%2fscp131.github.io%2fspringboot-auto%2f&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2fspringboot-auto%2f" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+ 
+<a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+    <i class="icon icon-share-alt icon-lg"></i>
+  </a>    
+</div> </div>
+
+    </div><nav class="post-nav flex-row flex-justify-between ">
+      
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/lambda/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Lambda</h4>
+      </a>
+    </div><div class="waves-block waves-effect next">
+      <a href="/json/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Model类常用操作</h4>
+      </a>
+    </div></nav><div class="comments vcomment v" id="comments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#comments',
+        notify: 'false',
+        verify: 'false',
+        appId: "OIMzeDHmePmzFKoz8XjwiiIJ-gzGzoHsz",
+        appKey: "H5k568nOnKRYMa48PiCWQEk9",
+        avatar: "retro",
+        placeholder: "请填写邮箱信息以便及时收到回复哦(。・∀・)ノ",
+        pageSize: "10"
+    })
+</script></article>
+</div><footer class="footer">
+          
+    <div class="top">
+        <p>
+            <span>
+              <a href="/index.xml" target="_blank" class="rss" title="rss" rel="noopener noreffer me"><i class="icon icon-lg icon-rss"></i></a>
+            </span>
+            <span>
+              博客内容遵循 
+              <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a>
+            </span>
+        </p>
+    </div>
+    
+    <div class="bottom">
+        <p>
+          <span>Scp131&copy;2021
+                  
+          </span>
+          
+          <span>
+              
+              <a href="http://www.miitbeian.gov.cn/" target="_blank">豫ICP备123456789号-1</a>
+                
+              <br>
+              
+              Power by <a href="https://gohugo.io/" target="_blank">Hugo</a> 
+              Theme 
+              <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+          </span>
+        </p>
+    </div>
+</footer></main>
+        <div class="mask" id="mask"></div><a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light">
+  <span class="icon icon-lg icon-chevron-up"></span>
+</a><div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=&title=Scp%20131&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=&title=Scp%20131&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Scp%20131&url=&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    
+ <div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="/img/wx.png" alt="微信分享二维码">
+</div>
+
+</body><div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+<script type="application/javascript" src="/lib/waves/waves.min.js"></script>
+
+
+
+
+<script type="application/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script>
+
+
+<script type="text/javascript">
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true, SINGLE:  true  };
+</script>
+
+
+<script type="application/javascript" src="/js/main.min.js"></script>
+
+
+<script type="application/javascript" src="/js/search.min.js" async></script></html>

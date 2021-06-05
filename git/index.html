@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="theme-color" content="#3F51B5">
+        <meta name="keywords" content="Scp131, 后端开发, 个人博客,java,spring,算法,idea,docker, material design">
+        <meta name="description" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Scp131 Blog">
+        <meta property="og:url" content="https://scp131.github.io">
+        <meta property="og:site_name" content="Scp131 Blog">
+        <meta property="og:description" content="">
+        <title>Git总结 | Scp 131</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="canonical" href="https://scp131.github.io">
+
+<link rel="styleSheet"  href="/css/style.min.css"/></head>
+    <body><div id="loading" class="active"></div>
+<aside id="menu"  class="hide"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.webp)">
+      <div class="brand">
+        <a href="" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.webp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kmiss</h5>
+          <a href="mailto:1355337315@qq.com" title="1355337315@qq.com" class="mail">1355337315@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+ 
+            <li class="waves-block waves-effect ">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/categories/">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect ">
+              <a href="/tags/">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/links/">
+                <i class="icon icon-lg icon-link"></i>
+                Links
+              </a>
+            </li>
+            
+            
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/scp131" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<main id="main">
+          <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Git总结</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="请输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    <div class="container fade-scale">
+        <h1 class="title">Git总结</h1>
+        <h5 class="subtitle">
+            
+            
+            
+              <time datetime="2019-12-18 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
+                2019年12月18日
+              </time>
+            
+        </h5>
+    </div>
+    
+    
+</header>
+<div class="container body-wrap"><div class="domHide">
+   <nav id="TableOfContents">
+  <ul>
+    <li><a href="#git基本结构">Git基本结构</a></li>
+    <li><a href="#git基本操作">Git基本操作</a>
+      <ul>
+        <li><a href="#最佳实践">最佳实践</a></li>
+      </ul>
+    </li>
+    <li><a href="#git的日志操作">Git的日志操作</a>
+      <ul>
+        <li><a href="#日志查看">日志查看</a></li>
+        <li><a href="#定位历史版本">定位历史版本</a></li>
+        <li><a href="#文件误删恢复">文件误删恢复</a></li>
+        <li><a href="#差异化比较">差异化比较</a></li>
+      </ul>
+    </li>
+    <li><a href="#git分支操作">Git分支操作</a>
+      <ul>
+        <li><a href="#基本操作">基本操作</a></li>
+        <li><a href="#冲突处理">冲突处理</a></li>
+      </ul>
+    </li>
+    <li><a href="#git本地库和远程库的操作">Git本地库和远程库的操作</a>
+      <ul>
+        <li><a href="#远程仓库设置">远程仓库设置</a></li>
+        <li><a href="#团队内操作">团队内操作</a>
+          <ul>
+            <li><a href="#数据同步">数据同步</a></li>
+            <li><a href="#上传本地数据">上传本地数据</a></li>
+            <li><a href="#本地数据同步更新">本地数据同步更新</a></li>
+          </ul>
+        </li>
+        <li><a href="#跨团队操作">跨团队操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+    </nav>
+</aside>
+  <article id="post-multipart-x-mixed-replace" class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+    
+      <h1 class="post-card-title">Git总结</h1><div class="post-meta">
+             
+     
+     <time class="post-time" title="2019-12-18 00:00:00 &#43;0000 UTC" datetime="2019-12-18 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
+        2019年12月18日
+     </time>
+     
+     
+     <ul class="article-category-list">
+     <li class="article-category-list-item">
+            <a class="article-category-list-link" href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E8%8F%9C%E9%B8%9F%E6%97%A5%E8%AE%B0/">我的菜鸟日记</a>
+          </li>
+        
+        
+     </ul>
+         
+     
+     <span id="busuanzi_container_page_pv" title="文章总阅读量" >
+        <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv">233</span>
+    </span>
+</div><div class="post-content" id="post-content" itemprop="postContent">
+          <p>Git是一种版本标准化工具，是目前最受欢迎的团体协作工具，通过Git我们可以代码的历史版本进行有效的存储，数据发生异常时也能及时恢复，也可以在不修改运行时程序源代码的情况下，进行分支开发，Git也支持跨团队协作等等。</p>
+<h2 id="git基本结构">Git基本结构</h2>
+<p>使用Git，一定要先了解Git的基本结构如下图所示。</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPMk7R.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h2 id="git基本操作">Git基本操作</h2>
+<p>使用git init 创建一个本地Git仓库，初始化成功后会出现.git隐藏文件夹</p>
+<p>git使用  用户名 和  email来生成签名区分不同用户</p>
+<ul>
+<li>
+<p>使用git config设置签名的生效范文为本地仓库，签名存储位置为<mark>.git/config</mark>文件</p>
+</li>
+<li>
+<p>使用git config -‌-global设置签名生效范围为当前用户登录的操作系统 ,签名存储位置为<mark>~/.gitconfig</mark>文件</p>
+</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#项目范围</span>
+git config   user.name &lt;用户名&gt;
+<span class="c1">#系统范围</span>
+git config --global  user.name &lt;用户邮箱&gt;
+</code></pre></div><h3 id="最佳实践">最佳实践</h3>
+<p>使用git status去查看文件从工作区提交到本地库，工作区和暂存区的状态。</p>
+<p>在空目录下使用git status控制台会显示以下内容</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">On branch master  <span class="c1">#当前工作区位于主分支</span>
+
+No commits yet    <span class="c1">#本地库未接收到任何提交的数据</span>
+
+Nothing to commit <span class="c1">#暂存区未接受到任何提交的数据</span>
+</code></pre></div><p>在当前目录下创建test.txt  输入git  status 会提示</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">On branch master	
+
+No commits yet		
+
+Untracked files:	<span class="c1">#发现未被追踪的文件  test.txt 此时test.txt颜色为红</span>
+  <span class="o">(</span>use <span class="s2">&#34;git add &lt;file&gt;...&#34;</span> to include in what will be committed<span class="o">)</span>
+	test.txt
+
+nothing added to commit but untracked files present  <span class="c1">#暂存区区未接收到任何提交但是存在未被追踪的数据</span>
+</code></pre></div><p>使用git add test.txt 将数据提交到暂存区，然后输入 git status 会显示</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">On branch master	
+
+No commits yet	
+
+Changes to be committed:		<span class="c1">#暂存区接收到新提交的文件test.txt</span>
+  <span class="o">(</span>use <span class="s2">&#34;git rm --cached &lt;file&gt;...&#34;</span> to unstage<span class="o">)</span>
+		new file: test.txt		<span class="c1">#此时test.txt颜色为绿</span>
+</code></pre></div><p>如果想要将文件从暂存区删除可以使用 git rm -‌-cached &lt;文件名&gt;</p>
+<p>使用git commit -m &ldquo;&lt;本次提交的注释&gt;&rdquo; 将暂存区里面的数据提交到本地库</p>
+<p>提交完毕后控制台会显示以下信息</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>matser <span class="o">(</span>root-commit<span class="o">)</span> 7eee2e4<span class="o">]</span>&lt;本次提交的注释&gt; <span class="c1">#第一次提交(根提交)</span>
+ <span class="m">1</span> file changed, <span class="m">3</span> insertions<span class="o">(</span>+<span class="o">)</span> <span class="c1">#一个文件被修改 新增3行数据</span>
+ create mode <span class="m">100644</span> test.txt
+</code></pre></div><p>本地库提交完成后 输入 git status 控制台显示以下信息</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">On branch master	
+
+nothing to commit.working tree is clean	<span class="c1">#暂存区没有接收到任何提交的数据 工作树是干净的</span>
+</code></pre></div><p>修改test.txt 输入git status 控制台会显示以下内容</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">On branch master	
+
+No commits yet		
+
+Changes not staged <span class="k">for</span> commit:	<span class="c1">#修改文件违背提交</span>
+  <span class="o">(</span>use <span class="s2">&#34;git add &lt;file&gt;...&#34;</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">&#34;git restore &lt;file&gt;...&#34;</span> to discard changes in working directory<span class="o">)</span>
+
+	modified: test.txt      <span class="c1">#test.txt颜色为红</span>
+
+No changes added to commit	<span class="c1">#暂存区没有收到提交的修改数据</span>
+</code></pre></div><p>输入git add &lt;文件名&gt; 将数据提交到暂存区 使用git commit -m &ldquo;&lt;本次提交的注释&gt;&rdquo; 将数据提交到本地库，控制台会显示以下内容</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>matser 60d2eac<span class="o">]</span>&lt;本次提交的注释&gt;
+ <span class="m">1</span> file changed, <span class="m">3</span> insertions<span class="o">(</span>+<span class="o">)</span> <span class="c1">#一个文件被修改 新增3行数据</span>
+</code></pre></div><p>​</p>
+<h2 id="git的日志操作">Git的日志操作</h2>
+<h3 id="日志查看">日志查看</h3>
+<p>使用git命令查看日志</p>
+<p>使用git log 查看每次提交到本地库的日志，<mark>只显示根提交到Head头指针之间的历史</mark>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">commit 744e2e479a6a15e305a9ce9ff11608d320ff0bb8 <span class="c1">#hash值</span>
+Author: 用户名 &lt;邮箱&gt;
+Date: Fri May <span class="m">11</span> 14:48：14 <span class="m">2019</span> +08080
+	&lt;本次提交的注释&gt;
+</code></pre></div><p>使用git log -‌-pretty=oneline去将信息一行显示</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">744e2e479a6a15e305a9ce9ff11608d320ff0bb8 <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> &lt;本次提交的注释&gt;	
+</code></pre></div><p>使用git log -‌-oneline显示简要hash值并以一行显示</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">744e2e <span class="o">(</span>HEAD -&gt; nmasert<span class="o">)</span> &lt;本次提交的注释&gt;
+</code></pre></div><p>使用git reflog查看全部历史</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">64011af <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> HEAD@<span class="o">{</span>0<span class="o">}</span>:commit: &lt;本次提交的注释&gt;
+526eb78 HEAD@<span class="o">{</span>1<span class="o">}</span>: commit: &lt;本次提交的注释&gt;
+</code></pre></div><h3 id="定位历史版本">定位历史版本</h3>
+<p>Git可以通过移动头指针来恢复到某个历史版本。</p>
+<ul>
+<li>
+<p>git reset -‌-hard &lt;简要hash&gt; 将头指针定位到某个历史版本</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">HEAD is now at 526eb78 &lt;本次提交的注释&gt;
+</code></pre></div></li>
+<li>
+<p>使用git reset -‌-hard HEAD^后退 ，一个^表示后退一步,n个表示后退n步</p>
+</li>
+<li>
+<p>使用git reset -‌-hard HEAD~n后退，n代表n步</p>
+</li>
+</ul>
+<p>除了-‌-hard还可以使用soft、mixed两个参数，他们的具体区别如下</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>指针移动位置</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-‌-soft</td>
+<td>只移动本地库指针</td>
+<td>文件内容不变，暂存区未commit</td>
+</tr>
+<tr>
+<td>-‌-mixed</td>
+<td>移动本地库和暂存区指针</td>
+<td>本地文件不变，工作区未add</td>
+</tr>
+<tr>
+<td>-‌-hard</td>
+<td>移动本地库、暂存区、工作区全部指针</td>
+<td>本地库、暂存区、工作区全部移动</td>
+</tr>
+</tbody>
+</table>
+<h3 id="文件误删恢复">文件误删恢复</h3>
+<p><mark>前提是: 文件存在的状态提交到了本地库</mark>，如果没有则无法找回。</p>
+<p>文件误删情况情况分以下两种</p>
+<ul>
+<li>
+<p>本地文件被删除同时已经提交到本地库 ，可以使用git reflog查看历史版本，并使用git reset -‌-hard &lt;简 要hash&gt;来恢复文件</p>
+</li>
+<li>
+<p>如果工作区文件已删除并添加到暂存区，但是没有提交到本地库，可以使用git reset -‌-head HEAD来恢复文件</p>
+</li>
+</ul>
+<h3 id="差异化比较">差异化比较</h3>
+<p>使用git diff 来比较两个历史版本之间的区别</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#对比两个历史版本</span>
+git diff &lt;简要hash&gt; &lt;简要hash&gt;
+
+<span class="c1">#对比本地文件和历史版本</span>
+git diff &lt;简要hash&gt; &lt;文件名&gt;
+
+<span class="c1">#对比本地文件和上一个版本</span>
+git diff HEAD^ test.txt
+
+<span class="c1">#对比本地全部文件和历史版本</span>
+git diff &lt;简要hash&gt;
+
+<span class="c1">#对比暂存区和本地文件</span>
+git diff &lt;文件名&gt;
+</code></pre></div><h2 id="git分支操作">Git分支操作</h2>
+<h3 id="基本操作">基本操作</h3>
+<p>使用git branch -v查看自己当前在哪个分支</p>
+<p>使用git branch&lt;分支名&gt;去创建一个分支</p>
+<p>使用git checkout &lt;分支名&gt;去切换到某个分支</p>
+<p>合并分支需要先切换到被合并的分支，然后使用git merge进行分支合并</p>
+<h3 id="冲突处理">冲突处理</h3>
+<p>注意git不能帮助人们去决定使用哪个修改，所以需要人为干涉。</p>
+<p>当两个分支同时修改同一行的时候，合并分支就会产生冲突，此时合并分支控制台会显示以下内容</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">Auto-merging test.txt
+CONFLICT <span class="o">(</span>content<span class="o">)</span>:Merage conflict in test.txt
+Automatic merge failed<span class="p">;</span>fix conflicts and <span class="k">then</span> commit the result
+</code></pre></div><p>并且目前所在的分支是(master | hot_fix)，这种情况会自动进入到合并分支的操作模式</p>
+<p>此时查看产生冲突的文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-txt" data-lang="txt">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD          
+edit by hot_fix
+=======                 这行以上内容属于当前分支，以下内容输入合并分支内容
+edit by master
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+</code></pre></div><p>输入git  status控制台显示</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">On branch hot_fix
+You have unmerged paths.
+	<span class="o">(</span>fix conflicts and run <span class="s2">&#34;git commit&#34;</span><span class="o">)</span>
+	<span class="o">(</span>use <span class="s2">&#34;git merge --abort&#34;</span> to abort merge<span class="o">)</span>
+    
+Unmerged paths:
+	<span class="o">(</span>use <span class="s2">&#34;git add &lt;file&gt;..&#34;</span> to mark resolution<span class="o">)</span>
+    both modified: test.txt
+</code></pre></div><p>当人为修改好之后，使用git add添加到暂存区，控制台提示</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">All conflicts fixed but you are still merging
+	<span class="o">(</span>use <span class="s2">&#34;git commit&#34;</span> to conclude merge<span class="o">)</span>
+
+Changes to be committed:
+	modified: test.txt
+</code></pre></div><p>根据提示，输入git commit -m &ldquo;&lt;本次提交的注释&gt;&rdquo; 将分支进行合并，注意不要加文件名</p>
+<h2 id="git本地库和远程库的操作">Git本地库和远程库的操作</h2>
+<h3 id="远程仓库设置">远程仓库设置</h3>
+<p>在本地库向远程库同步数据之前，本地库要知道远程库的位置，设置远程仓库有两种形式</p>
+<ul>
+<li>
+<p>https<br>使用git remote add origin &lt;远程库https连接&gt;的形式来设置远程库</p>
+</li>
+<li>
+<p>ssh<br>
+cd ~ 切换到家目录，ssh -keygen -t rsa -C 邮箱生成key，此时本地会产生.ssh隐藏文件夹，.ssh文件夹里面有一个id_rsa.pub文件，将id_rsa.pub文件内容复制下来。<br>
+在Github Web页面 &mdash;&gt; 点击用户头像 &mdash;&gt; Setting &mdash;&gt;SSH and GPGkeys &mdash;&gt; New SSH key &mdash;&gt; 将复制的内容粘贴到key里面 &mdash;&gt; Add SSH key 。<br>
+git remote add origin_ssh &lt;远程库ssh连接地址&gt;。</p>
+</li>
+</ul>
+<p>然后使用git push origin master将本地master分支上的内容同步到远程仓库</p>
+<p>使用git remote -v查看远程仓库的相关信息</p>
+<h3 id="团队内操作">团队内操作</h3>
+<p>A正在开发某一个项目，B想要一起开发。B要进行以下操作</p>
+<h4 id="数据同步">数据同步</h4>
+<p>那么B需要将A远程库的数据克隆下来</p>
+<p>使用git clone &lt;远程仓库https连接地址&gt;克隆到本地</p>
+<p>克隆成功后发现本地文件多了一个.git的文件夹</p>
+<p>输入git remote -v发现远程仓库的别名已经设置为其来源库的https连接地址</p>
+<p>所以git clone完成了三步操作</p>
+<ul>
+<li>将远程库的数据下载到本地</li>
+<li>初始化本地库</li>
+<li>设置远程库的连接地址</li>
+</ul>
+<h4 id="上传本地数据">上传本地数据</h4>
+<p>如果B想将自己的修改上传到A的远程仓库，必须加入A的团队</p>
+<blockquote>
+<p>邀请的过程（GitHub）</p>
+<p>仓库Setting &mdash;&gt; Collaborators &mdash;&gt;输入另外一个人的Github账号 &mdash;&gt; Add collaborator</p>
+<p>然后copy invite link将连接发送给B</p>
+</blockquote>
+<p>B打开链接后，同意邀请即可加入团队</p>
+<p>此时B输入git push origin master 即可将本地的master分支同步到A的远程仓库</p>
+<h4 id="本地数据同步更新">本地数据同步更新</h4>
+<p>B将自己修改的内容上传之后,A想要将B更新的内容同步到本地</p>
+<p>可以使用git pull命令</p>
+<blockquote>
+<p>git pull命令等于git fetch 和 gti merge</p>
+<p>如果不使用git pull origin master，使用git fetch origin master</p>
+<p>会将远程库的东西下载到本地并保存为origin/master分支</p>
+<p>然后使用git merge origin/master合并分支即可</p>
+</blockquote>
+<p>需要注意的是，如果两个人都修改了同样的位置并都执行了 git push origin master，后推送的会出现推送失败的情况，如果想要推送必须要先执行git pull origin master同步到本地解决冲突后才可以推送。</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPMFB9.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="跨团队操作">跨团队操作</h3>
+<p>如果C想要协助A和B开发但是C属于另外一个公司，那么C需要先将A和B公司的远程库fork下来</p>
+<p>然后使用git clone origin &lt;远程仓库https链接&gt; 然后修改完毕之后push origin master</p>
+<p>C如果想将自己的远程库的数据提交给A和B公司，那么C需要发布Pull Request请求</p>
+<br>
+<br>
+在GitHub仓库界面 ---> Pull Request ---> Create pull request ---> 输入消息内容 --->commit
+<br>
+<br>
+<p>A在在GitHub仓库界面 &mdash;&gt; Pull Request &mdash;&gt; Files changed 可以查看修改的文件内容 &mdash;&gt; Merge pull request合并分支</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPMinJ.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+
+      </div><blockquote class="post-copyright">
+  <div class="content">
+      <span class="post-time">
+        最后更新时间：
+        <time datetime="2019-12-18 00:00:00 &#43;0000 UTC" itemprop="dateUpdated">
+            2019年12月18日
+        </time>
+    </span>
+    <br>
+    原始链接：
+    <a href="https://scp131.github.io/git/" target="_blank" rel="external">
+      https://scp131.github.io/git/
+    </a>
+  </div>
+
+  <footer>
+      <a href="https://scp131.github.io/">
+          <img src="/img/avatar.webp" alt="Scp131">
+          Scp131
+      </a>
+  </footer>
+</blockquote><div class="post-footer" id="post-footer">
+<ul class="article-tag-list">
+&nbsp;
+      <li class="article-tag-list-item">
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/git/">
+            Git 
+          </a>
+        </li>
+      
+</ul><div class="page-share-wrap"><div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2fgit%2f&title=Git%e6%80%bb%e7%bb%93&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2fgit%2f&title=Git%e6%80%bb%e7%bb%93&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2fgit%2f" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Git%e6%80%bb%e7%bb%93&url=https%3a%2f%2fscp131.github.io%2fgit%2f&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2fgit%2f" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+ 
+<a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+    <i class="icon icon-share-alt icon-lg"></i>
+  </a>    
+</div> </div>
+
+    </div><nav class="post-nav flex-row flex-justify-between ">
+      
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/dontstrave/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">饥荒云服务器搭建教程</h4>
+      </a>
+    </div><div class="waves-block waves-effect next">
+      <a href="/thread-1/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">线程基本使用</h4>
+      </a>
+    </div></nav><div class="comments vcomment v" id="comments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#comments',
+        notify: 'false',
+        verify: 'false',
+        appId: "OIMzeDHmePmzFKoz8XjwiiIJ-gzGzoHsz",
+        appKey: "H5k568nOnKRYMa48PiCWQEk9",
+        avatar: "retro",
+        placeholder: "请填写邮箱信息以便及时收到回复哦(。・∀・)ノ",
+        pageSize: "10"
+    })
+</script></article>
+</div><footer class="footer">
+          
+    <div class="top">
+        <p>
+            <span>
+              <a href="/index.xml" target="_blank" class="rss" title="rss" rel="noopener noreffer me"><i class="icon icon-lg icon-rss"></i></a>
+            </span>
+            <span>
+              博客内容遵循 
+              <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a>
+            </span>
+        </p>
+    </div>
+    
+    <div class="bottom">
+        <p>
+          <span>Scp131&copy;2021
+                  
+          </span>
+          
+          <span>
+              
+              <a href="http://www.miitbeian.gov.cn/" target="_blank">豫ICP备123456789号-1</a>
+                
+              <br>
+              
+              Power by <a href="https://gohugo.io/" target="_blank">Hugo</a> 
+              Theme 
+              <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+          </span>
+        </p>
+    </div>
+</footer></main>
+        <div class="mask" id="mask"></div><a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light">
+  <span class="icon icon-lg icon-chevron-up"></span>
+</a><div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=&title=Scp%20131&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=&title=Scp%20131&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Scp%20131&url=&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    
+ <div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="/img/wx.png" alt="微信分享二维码">
+</div>
+
+</body><div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+<script type="application/javascript" src="/lib/waves/waves.min.js"></script>
+
+
+
+
+<script type="application/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script>
+
+
+<script type="text/javascript">
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true, SINGLE:  true  };
+</script>
+
+
+<script type="application/javascript" src="/js/main.min.js"></script>
+
+
+<script type="application/javascript" src="/js/search.min.js" async></script></html>

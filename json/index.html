@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="theme-color" content="#3F51B5">
+        <meta name="keywords" content="Scp131, 后端开发, 个人博客,java,spring,算法,idea,docker, material design">
+        <meta name="description" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Scp131 Blog">
+        <meta property="og:url" content="https://scp131.github.io">
+        <meta property="og:site_name" content="Scp131 Blog">
+        <meta property="og:description" content="">
+        <title>Model类常用操作 | Scp 131</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="canonical" href="https://scp131.github.io">
+
+<link rel="styleSheet"  href="/css/style.min.css"/></head>
+    <body><div id="loading" class="active"></div>
+<aside id="menu"  class="hide"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.webp)">
+      <div class="brand">
+        <a href="" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.webp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kmiss</h5>
+          <a href="mailto:1355337315@qq.com" title="1355337315@qq.com" class="mail">1355337315@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+ 
+            <li class="waves-block waves-effect ">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/categories/">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect ">
+              <a href="/tags/">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/links/">
+                <i class="icon icon-lg icon-link"></i>
+                Links
+              </a>
+            </li>
+            
+            
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/scp131" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<main id="main">
+          <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Model类常用操作</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="请输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    <div class="container fade-scale">
+        <h1 class="title">Model类常用操作</h1>
+        <h5 class="subtitle">
+            
+            
+            
+              <time datetime="2019-08-17 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
+                2019年08月17日
+              </time>
+            
+        </h5>
+    </div>
+    
+    
+</header>
+<div class="container body-wrap"><div class="domHide">
+   <nav id="TableOfContents">
+  <ul>
+    <li><a href="#jackson">Jackson</a></li>
+  </ul>
+</nav>
+</div>
+
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+    </nav>
+</aside>
+  <article id="post-multipart-x-mixed-replace" class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+    
+      <h1 class="post-card-title">Model类常用操作</h1><div class="post-meta">
+             
+     
+     <time class="post-time" title="2019-08-17 00:00:00 &#43;0000 UTC" datetime="2019-08-17 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
+        2019年08月17日
+     </time>
+     
+     
+     <ul class="article-category-list">
+     <li class="article-category-list-item">
+            <a class="article-category-list-link" href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E8%8F%9C%E9%B8%9F%E6%97%A5%E8%AE%B0/">我的菜鸟日记</a>
+          </li>
+        
+        
+     </ul>
+         
+     
+     <span id="busuanzi_container_page_pv" title="文章总阅读量" >
+        <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv">233</span>
+    </span>
+</div><div class="post-content" id="post-content" itemprop="postContent">
+          <h2 id="jackson">Jackson</h2>
+<p>在使用序列化反序列化之前保证model类有<mark>Set、Get、全参 无参构造方法</mark></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Book</span> <span class="n">book</span> <span class="o">=</span> <span class="n">Book</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">id</span><span class="o">(</span><span class="n">20L</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">author</span><span class="o">(</span><span class="s">&#34;Bob&#34;</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">createTime</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="c1">//序列化
+</span><span class="c1"></span><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">book</span><span class="o">);</span>
+
+<span class="c1">//反序列化
+</span><span class="c1"></span><span class="n">Book</span> <span class="n">book1</span> <span class="o">=</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">str</span><span class="o">,</span> <span class="n">Book</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</code></pre></div><p>常用的注解</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//改变序列化顺序   
+</span><span class="c1"></span><span class="nd">@JsonPropertyOrder</span><span class="o">(</span><span class="n">value</span><span class="o">={</span><span class="s">&#34;content&#34;</span><span class="o">,</span><span class="s">&#34;title&#34;</span><span class="o">})</span>   
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Book</span> <span class="o">{</span>
+
+    <span class="c1">//为空元素不做序列化
+</span><span class="c1"></span>	<span class="nd">@JsonInclude</span><span class="o">(</span><span class="n">JsonInclude</span><span class="o">.</span><span class="na">Include</span><span class="o">.</span><span class="na">NON_NULL</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+    
+    <span class="c1">//改变序列化/反序列化名字
+</span><span class="c1"></span>    <span class="nd">@JsonProperty</span><span class="o">(</span><span class="s">&#34;auther&#34;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">author</span><span class="o">;</span>
+    
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">title</span><span class="o">;</span>
+    
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">content</span><span class="o">;</span>           
+    
+    <span class="c1">//定义序列化反序列化时间格式
+</span><span class="c1"></span>    <span class="nd">@JsonFormat</span><span class="o">(</span><span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span class="o">,</span> <span class="n">timezone</span> <span class="o">=</span> <span class="s">&#34;GMT+8&#34;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">Date</span> <span class="n">createTime</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span><span class="o">;</span>
+
+<span class="o">}</span>
+</code></pre></div><p>参数校验  在需要被校验的类上面加上<mark>@Validated</mark></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">限制</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">@Null</td>
+<td style="text-align:left">只能为null</td>
+</tr>
+<tr>
+<td style="text-align:left">@NotNull</td>
+<td style="text-align:left">必须不为null</td>
+</tr>
+<tr>
+<td style="text-align:left">@AssertFalse</td>
+<td style="text-align:left">必须为false</td>
+</tr>
+<tr>
+<td style="text-align:left">@AssertTrue</td>
+<td style="text-align:left">必须为true</td>
+</tr>
+<tr>
+<td style="text-align:left">@DecimalMax(value)</td>
+<td style="text-align:left">必须为一个不大于指定值的数字</td>
+</tr>
+<tr>
+<td style="text-align:left">@DecimalMin(value)</td>
+<td style="text-align:left">必须为一个不小于指定值的数字</td>
+</tr>
+<tr>
+<td style="text-align:left">@Digits(integer,fraction)</td>
+<td style="text-align:left">必须为一个小数，且整数部分的位数不能超过integer，小数部分的位数不能超过fraction</td>
+</tr>
+<tr>
+<td style="text-align:left">@Future</td>
+<td style="text-align:left">必须是一个将来的日期</td>
+</tr>
+<tr>
+<td style="text-align:left">@Past</td>
+<td style="text-align:left">必须是一个过去的日期</td>
+</tr>
+<tr>
+<td style="text-align:left">@Max(value)</td>
+<td style="text-align:left">必须为一个不大于指定值的数字</td>
+</tr>
+<tr>
+<td style="text-align:left">@Min(value)</td>
+<td style="text-align:left">必须为一个不小于指定值的数字</td>
+</tr>
+<tr>
+<td style="text-align:left">@Pattern(value)</td>
+<td style="text-align:left">必须符合指定的正则表达式</td>
+</tr>
+<tr>
+<td style="text-align:left">@Size(max,min)</td>
+<td style="text-align:left">字符长度必须在min到max之间</td>
+</tr>
+<tr>
+<td style="text-align:left">@NotEmpty</td>
+<td style="text-align:left">验证注解的元素值不为null且不为空（字符串长度不为0、集合大小不为0）</td>
+</tr>
+<tr>
+<td style="text-align:left">@NotBlank</td>
+<td style="text-align:left">验证注解的元素值不为空（不为null、去除首位空格后长度为0），不同于@NotEmpty，@NotBlank只应用于字符串且在比较时会去除字符串的空格</td>
+</tr>
+<tr>
+<td style="text-align:left">@Email</td>
+<td style="text-align:left">验证注解的元素值是Email，也可以通过正则表达式和flag指定自定义的email格式</td>
+</tr>
+</tbody>
+</table>
+
+      </div><blockquote class="post-copyright">
+  <div class="content">
+      <span class="post-time">
+        最后更新时间：
+        <time datetime="2019-08-17 00:00:00 &#43;0000 UTC" itemprop="dateUpdated">
+            2019年08月17日
+        </time>
+    </span>
+    <br>
+    原始链接：
+    <a href="https://scp131.github.io/json/" target="_blank" rel="external">
+      https://scp131.github.io/json/
+    </a>
+  </div>
+
+  <footer>
+      <a href="https://scp131.github.io/">
+          <img src="/img/avatar.webp" alt="Scp131">
+          Scp131
+      </a>
+  </footer>
+</blockquote><div class="post-footer" id="post-footer">
+<ul class="article-tag-list">
+&nbsp;
+      <li class="article-tag-list-item">
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/model/">
+            Model 
+          </a>
+        </li>
+      
+</ul><div class="page-share-wrap"><div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2fjson%2f&title=Model%e7%b1%bb%e5%b8%b8%e7%94%a8%e6%93%8d%e4%bd%9c&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2fjson%2f&title=Model%e7%b1%bb%e5%b8%b8%e7%94%a8%e6%93%8d%e4%bd%9c&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2fjson%2f" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Model%e7%b1%bb%e5%b8%b8%e7%94%a8%e6%93%8d%e4%bd%9c&url=https%3a%2f%2fscp131.github.io%2fjson%2f&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2fjson%2f" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+ 
+<a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+    <i class="icon icon-share-alt icon-lg"></i>
+  </a>    
+</div> </div>
+
+    </div><nav class="post-nav flex-row flex-justify-between ">
+      
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/springboot-auto/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">SpringBoot自动配置原理</h4>
+      </a>
+    </div><div class="waves-block waves-effect next">
+      <a href="/idea/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">调教你的Idea</h4>
+      </a>
+    </div></nav><div class="comments vcomment v" id="comments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#comments',
+        notify: 'false',
+        verify: 'false',
+        appId: "OIMzeDHmePmzFKoz8XjwiiIJ-gzGzoHsz",
+        appKey: "H5k568nOnKRYMa48PiCWQEk9",
+        avatar: "retro",
+        placeholder: "请填写邮箱信息以便及时收到回复哦(。・∀・)ノ",
+        pageSize: "10"
+    })
+</script></article>
+</div><footer class="footer">
+          
+    <div class="top">
+        <p>
+            <span>
+              <a href="/index.xml" target="_blank" class="rss" title="rss" rel="noopener noreffer me"><i class="icon icon-lg icon-rss"></i></a>
+            </span>
+            <span>
+              博客内容遵循 
+              <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a>
+            </span>
+        </p>
+    </div>
+    
+    <div class="bottom">
+        <p>
+          <span>Scp131&copy;2021
+                  
+          </span>
+          
+          <span>
+              
+              <a href="http://www.miitbeian.gov.cn/" target="_blank">豫ICP备123456789号-1</a>
+                
+              <br>
+              
+              Power by <a href="https://gohugo.io/" target="_blank">Hugo</a> 
+              Theme 
+              <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+          </span>
+        </p>
+    </div>
+</footer></main>
+        <div class="mask" id="mask"></div><a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light">
+  <span class="icon icon-lg icon-chevron-up"></span>
+</a><div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=&title=Scp%20131&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=&title=Scp%20131&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Scp%20131&url=&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    
+ <div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="/img/wx.png" alt="微信分享二维码">
+</div>
+
+</body><div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+<script type="application/javascript" src="/lib/waves/waves.min.js"></script>
+
+
+
+
+<script type="application/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script>
+
+
+<script type="text/javascript">
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true, SINGLE:  true  };
+</script>
+
+
+<script type="application/javascript" src="/js/main.min.js"></script>
+
+
+<script type="application/javascript" src="/js/search.min.js" async></script></html>

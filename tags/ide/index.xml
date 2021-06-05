@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IDE on Scp 131</title>
+    <link>https://scp131.github.io/tags/ide/</link>
+    <description>Recent content in IDE on Scp 131</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
+    <webMaster>1355337315@qq.com (Kmiss)</webMaster>
+    <lastBuildDate>Tue, 16 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/tags/ide/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>调教你的Idea</title>
+      <link>https://scp131.github.io/idea/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/idea/</guid>
+      <description>配置idea 我的idea常用配置 1、基本配置 配置U</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reflect on Scp 131</title>
+    <link>https://scp131.github.io/tags/reflect/</link>
+    <description>Recent content in Reflect on Scp 131</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
+    <webMaster>1355337315@qq.com (Kmiss)</webMaster>
+    <lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/tags/reflect/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java反射</title>
+      <link>https://scp131.github.io/reflect/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/reflect/</guid>
+      <description>注解 元注解 @Inherited 注解可以被子类继承 @Documented 文档注释会包含在j</description>
+    </item>
+    
+  </channel>
+</rss>

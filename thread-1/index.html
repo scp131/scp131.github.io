@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="theme-color" content="#3F51B5">
+        <meta name="keywords" content="Scp131, 后端开发, 个人博客,java,spring,算法,idea,docker, material design">
+        <meta name="description" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Scp131 Blog">
+        <meta property="og:url" content="https://scp131.github.io">
+        <meta property="og:site_name" content="Scp131 Blog">
+        <meta property="og:description" content="">
+        <title>线程基本使用 | Scp 131</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="canonical" href="https://scp131.github.io">
+
+<link rel="styleSheet"  href="/css/style.min.css"/></head>
+    <body><div id="loading" class="active"></div>
+<aside id="menu"  class="hide"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.webp)">
+      <div class="brand">
+        <a href="" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.webp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kmiss</h5>
+          <a href="mailto:1355337315@qq.com" title="1355337315@qq.com" class="mail">1355337315@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+ 
+            <li class="waves-block waves-effect ">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/categories/">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect ">
+              <a href="/tags/">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/links/">
+                <i class="icon icon-lg icon-link"></i>
+                Links
+              </a>
+            </li>
+            
+            
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/scp131" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<main id="main">
+          <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">线程基本使用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="请输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    <div class="container fade-scale">
+        <h1 class="title">线程基本使用</h1>
+        <h5 class="subtitle">
+            
+            
+            
+              <time datetime="2019-12-12 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
+                2019年12月12日
+              </time>
+            
+        </h5>
+    </div>
+    
+    
+</header>
+<div class="container body-wrap"><div class="domHide">
+   <nav id="TableOfContents"></nav>
+</div>
+
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+    </nav>
+</aside>
+  <article id="post-multipart-x-mixed-replace" class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+    
+      <h1 class="post-card-title">线程基本使用</h1><div class="post-meta">
+             
+     
+     <time class="post-time" title="2019-12-12 00:00:00 &#43;0000 UTC" datetime="2019-12-12 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
+        2019年12月12日
+     </time>
+     
+     
+     <ul class="article-category-list">
+     <li class="article-category-list-item">
+            <a class="article-category-list-link" href="https://scp131.github.io/categories/java%E5%9F%BA%E7%A1%80/">Java基础</a>
+          </li>
+        
+        
+     </ul>
+         
+     
+     <span id="busuanzi_container_page_pv" title="文章总阅读量" >
+        <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv">233</span>
+    </span>
+</div><div class="post-content" id="post-content" itemprop="postContent">
+          <p>程序 	指令和数据的有序集合	静态概念</p>
+<p>进程	系统资源分配的基本单位  动态概念</p>
+<p>线程	cpu调度和执行的基本单位</p>
+<p>一个进程开辟了多个线程，线程的执行顺序由cpu决定，无法认为干预。</p>
+<p>继承Thread类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">MyThread</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+        
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="k">new</span> <span class="n">MyThread</span><span class="o">().</span><span class="na">start</span><span class="o">();</span>
+</code></pre></div><p>实现Runnable接口</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">MyRunnable</span> <span class="kd">implements</span> <span class="n">Runnable</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+        
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">MyRunnable</span><span class="o">()).</span><span class="na">start</span><span class="o">();</span>
+</code></pre></div><p>实现Callable接口</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">MyCallale</span> <span class="kd">implements</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="n">Boolean</span> <span class="nf">call</span><span class="o">(){</span>
+        
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="n">ExecutorService</span> <span class="n">es</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">new</span> <span class="n">MyCallable</span><span class="o">());</span>
+<span class="kt">boolean</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+
+<span class="n">es</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
+</code></pre></div><p>静态代理</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">interface</span> <span class="nc">Marry</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">marry</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Persion</span> <span class="kd">implements</span> <span class="n">Marry</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">marry</span><span class="o">(){</span>
+        
+    <span class="o">}</span>
+<span class="o">}</span>
+
+
+<span class="kd">class</span> <span class="nc">WeddingCompany</span> <span class="kd">implements</span> <span class="n">Marry</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Marry</span> <span class="n">target</span><span class="o">;</span>
+    
+    <span class="kd">public</span> <span class="nf">WeddingCompany</span><span class="o">(</span><span class="n">Persion</span> <span class="n">persion</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">persion</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Override</span> 
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">marry</span><span class="o">(){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;结婚前准备&#34;</span><span class="o">);</span>
+        <span class="n">target</span><span class="o">.</span><span class="na">marry</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;结婚后准备&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">WeddingCompany</span> <span class="n">wc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">WeddingCompany</span><span class="o">(</span><span class="k">new</span> <span class="n">Persion</span><span class="o">());</span>
+<span class="n">wc</span><span class="o">.</span><span class="na">marry</span><span class="o">();</span> 
+</code></pre></div><p>线程状态</p>
+<p>new 新生状态</p>
+<p>start  就绪状态</p>
+<p>sleep join阻塞状态</p>
+<p>执行状态</p>
+<p>死亡状态  线程只能启动一次</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Thread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+    	<span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">1000</span><span class="o">);</span>    
+    <span class="o">}</span>
+<span class="o">});</span>
+
+<span class="n">Thread</span><span class="o">.</span><span class="na">State</span>  <span class="n">state</span> <span class="o">=</span> <span class="n">thread</span><span class="o">.</span><span class="na">getSate</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span><span class="c1">//NEW
+</span><span class="c1"></span>
+<span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+<span class="n">Thread</span><span class="o">.</span><span class="na">State</span>  <span class="n">state</span> <span class="o">=</span> <span class="n">thread</span><span class="o">.</span><span class="na">getSate</span><span class="o">();</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span><span class="c1">//RUNNABLE
+</span><span class="c1"></span>
+<span class="c1">//TIMED_WAITING
+</span><span class="c1"></span>
+<span class="k">while</span><span class="o">(</span><span class="n">state</span> <span class="o">!=</span> <span class="n">Thread</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">TERMINATED</span><span class="o">){</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">thread</span><span class="o">.</span><span class="na">getSate</span><span class="o">();</span>
+	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span><span class="c1">//TERMINATED
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></div><p>线程停止</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">MyRunable</span> <span class="kd">implements</span> <span class="n">Runnable</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="n">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">flag</span><span class="o">){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;running......&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">stop</span><span class="o">(){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">flag</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="n">MyRunable</span> <span class="n">mr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyRunnable</span><span class="o">();</span>
+<span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">mr</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+<span class="n">mr</span><span class="o">.</span><span class="na">stop</span><span class="o">;</span>
+</code></pre></div><p>线程休眠</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//不会释放锁
+</span><span class="c1"></span><span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">1000</span><span class="o">);</span>
+</code></pre></div><p>线程礼让</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//让线程从运行状态转化为就绪状态
+</span><span class="c1">//主动礼让的程序状态从运行状态转化为就绪状态
+</span><span class="c1">//未礼让的线程是否执行需要系统决定
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">MyRunable</span> <span class="kd">implements</span> <span class="n">Runnable</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;start------&gt;&#34;</span><span class="o">);</span>
+        <span class="n">Thread</span><span class="o">.</span><span class="na">yield</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;end------&gt;&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">MyRunnable</span><span class="o">(),</span><span class="s">&#34;A&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+<span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">MyRunnable</span><span class="o">(),</span><span class="s">&#34;B&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+</code></pre></div><p>线程合并</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//Vip 线程先执行 执行完毕之后才能继续执行其余线程
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">MyRunable</span> <span class="kd">implements</span> <span class="n">Runnable</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;insert success.........&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="n">Thread</span> <span class="n">myThread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">MyRunnable</span><span class="o">());</span>
+        <span class="n">myThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;insert success.........&#34;</span><span class="o">);</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">50</span><span class="o">){</span>
+                <span class="n">myThread</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>线程优先级</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Thread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">MyRunnable</span><span class="o">());</span>
+<span class="n">thread</span><span class="o">.</span><span class="na">setPriority</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+<span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</code></pre></div><p>守护线程</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Thread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">MyRunnable</span><span class="o">());</span>
+<span class="n">thread</span><span class="o">.</span><span class="na">setDaemon</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+<span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Example HTML5 Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Test<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+      </div><blockquote class="post-copyright">
+  <div class="content">
+      <span class="post-time">
+        最后更新时间：
+        <time datetime="2019-12-12 00:00:00 &#43;0000 UTC" itemprop="dateUpdated">
+            2019年12月12日
+        </time>
+    </span>
+    <br>
+    原始链接：
+    <a href="https://scp131.github.io/thread-1/" target="_blank" rel="external">
+      https://scp131.github.io/thread-1/
+    </a>
+  </div>
+
+  <footer>
+      <a href="https://scp131.github.io/">
+          <img src="/img/avatar.webp" alt="Scp131">
+          Scp131
+      </a>
+  </footer>
+</blockquote><div class="post-footer" id="post-footer">
+<ul class="article-tag-list">
+&nbsp;
+      <li class="article-tag-list-item">
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/thread/">
+            thread 
+          </a>
+        </li>
+      
+</ul><div class="page-share-wrap"><div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2fthread-1%2f&title=%e7%ba%bf%e7%a8%8b%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2fthread-1%2f&title=%e7%ba%bf%e7%a8%8b%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2fthread-1%2f" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=%e7%ba%bf%e7%a8%8b%e5%9f%ba%e6%9c%ac%e4%bd%bf%e7%94%a8&url=https%3a%2f%2fscp131.github.io%2fthread-1%2f&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2fthread-1%2f" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+ 
+<a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+    <i class="icon icon-share-alt icon-lg"></i>
+  </a>    
+</div> </div>
+
+    </div><nav class="post-nav flex-row flex-justify-between ">
+      
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/git/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Git总结</h4>
+      </a>
+    </div><div class="waves-block waves-effect next">
+      <a href="/thread/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">java锁初探</h4>
+      </a>
+    </div></nav><div class="comments vcomment v" id="comments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#comments',
+        notify: 'false',
+        verify: 'false',
+        appId: "OIMzeDHmePmzFKoz8XjwiiIJ-gzGzoHsz",
+        appKey: "H5k568nOnKRYMa48PiCWQEk9",
+        avatar: "retro",
+        placeholder: "请填写邮箱信息以便及时收到回复哦(。・∀・)ノ",
+        pageSize: "10"
+    })
+</script></article>
+</div><footer class="footer">
+          
+    <div class="top">
+        <p>
+            <span>
+              <a href="/index.xml" target="_blank" class="rss" title="rss" rel="noopener noreffer me"><i class="icon icon-lg icon-rss"></i></a>
+            </span>
+            <span>
+              博客内容遵循 
+              <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a>
+            </span>
+        </p>
+    </div>
+    
+    <div class="bottom">
+        <p>
+          <span>Scp131&copy;2021
+                  
+          </span>
+          
+          <span>
+              
+              <a href="http://www.miitbeian.gov.cn/" target="_blank">豫ICP备123456789号-1</a>
+                
+              <br>
+              
+              Power by <a href="https://gohugo.io/" target="_blank">Hugo</a> 
+              Theme 
+              <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+          </span>
+        </p>
+    </div>
+</footer></main>
+        <div class="mask" id="mask"></div><a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light">
+  <span class="icon icon-lg icon-chevron-up"></span>
+</a><div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=&title=Scp%20131&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=&title=Scp%20131&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Scp%20131&url=&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    
+ <div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="/img/wx.png" alt="微信分享二维码">
+</div>
+
+</body><div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+<script type="application/javascript" src="/lib/waves/waves.min.js"></script>
+
+
+
+
+<script type="application/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script>
+
+
+<script type="text/javascript">
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true, SINGLE:  true  };
+</script>
+
+
+<script type="application/javascript" src="/js/main.min.js"></script>
+
+
+<script type="application/javascript" src="/js/search.min.js" async></script></html>

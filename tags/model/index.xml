@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Model on Scp 131</title>
+    <link>https://scp131.github.io/tags/model/</link>
+    <description>Recent content in Model on Scp 131</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
+    <webMaster>1355337315@qq.com (Kmiss)</webMaster>
+    <lastBuildDate>Sat, 17 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/tags/model/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Model类常用操作</title>
+      <link>https://scp131.github.io/json/</link>
+      <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/json/</guid>
+      <description>Jackson 在使用序列化反序列化之前保证model类有Set</description>
+    </item>
+    
+  </channel>
+</rss>

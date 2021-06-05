@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FastDFS on Scp 131</title>
+    <link>https://scp131.github.io/tags/fastdfs/</link>
+    <description>Recent content in FastDFS on Scp 131</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
+    <webMaster>1355337315@qq.com (Kmiss)</webMaster>
+    <lastBuildDate>Mon, 09 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/tags/fastdfs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用FDS搭建图床</title>
+      <link>https://scp131.github.io/fdfs/</link>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/fdfs/</guid>
+      <description>FDS服务器搭建 架构介绍 FastDFS是使用c语言</description>
+    </item>
+    
+  </channel>
+</rss>

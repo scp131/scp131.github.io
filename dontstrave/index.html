@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="theme-color" content="#3F51B5">
+        <meta name="keywords" content="Scp131, 后端开发, 个人博客,java,spring,算法,idea,docker, material design">
+        <meta name="description" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Scp131 Blog">
+        <meta property="og:url" content="https://scp131.github.io">
+        <meta property="og:site_name" content="Scp131 Blog">
+        <meta property="og:description" content="">
+        <title>饥荒云服务器搭建教程 | Scp 131</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="canonical" href="https://scp131.github.io">
+
+<link rel="styleSheet"  href="/css/style.min.css"/></head>
+    <body><div id="loading" class="active"></div>
+<aside id="menu"  class="hide"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.webp)">
+      <div class="brand">
+        <a href="" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.webp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kmiss</h5>
+          <a href="mailto:1355337315@qq.com" title="1355337315@qq.com" class="mail">1355337315@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+ 
+            <li class="waves-block waves-effect ">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/categories/">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect ">
+              <a href="/tags/">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/links/">
+                <i class="icon icon-lg icon-link"></i>
+                Links
+              </a>
+            </li>
+            
+            
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/scp131" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<main id="main">
+          <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">饥荒云服务器搭建教程</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="请输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    <div class="container fade-scale">
+        <h1 class="title">饥荒云服务器搭建教程</h1>
+        <h5 class="subtitle">
+            
+            
+            
+              <time datetime="2019-12-20 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
+                2019年12月20日
+              </time>
+            
+        </h5>
+    </div>
+    
+    
+</header>
+<div class="container body-wrap"><div class="domHide">
+   <nav id="TableOfContents">
+  <ul>
+    <li><a href="#环境准备">环境准备</a></li>
+    <li><a href="#上传游戏配置">上传游戏配置</a></li>
+    <li><a href="#配置token及独立配置文件">配置Token及独立配置文件</a></li>
+    <li><a href="#配置mod">配置mod</a></li>
+    <li><a href="#运行服务器">运行服务器</a></li>
+    <li><a href="#附录">附录</a>
+      <ul>
+        <li><a href="#clusterini">cluster.ini</a></li>
+        <li><a href="#serverini">server.ini</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+    </nav>
+</aside>
+  <article id="post-multipart-x-mixed-replace" class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+    
+      <h1 class="post-card-title">饥荒云服务器搭建教程</h1><div class="post-meta">
+             
+     
+     <time class="post-time" title="2019-12-20 00:00:00 &#43;0000 UTC" datetime="2019-12-20 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
+        2019年12月20日
+     </time>
+     
+     
+     <ul class="article-category-list">
+     <li class="article-category-list-item">
+            <a class="article-category-list-link" href="https://scp131.github.io/categories/%E6%97%A5%E5%B8%B8%E6%91%B8%E9%B1%BC/">日常摸鱼</a>
+          </li>
+        
+        
+     </ul>
+         
+     
+     <span id="busuanzi_container_page_pv" title="文章总阅读量" >
+        <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv">233</span>
+    </span>
+</div><div class="post-content" id="post-content" itemprop="postContent">
+          <h2 id="环境准备">环境准备</h2>
+<p>饥荒的服务器项目为32位，如果系统为64位则需要执行下面的代码，如果是32位只需要安装screen即可</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">#安装32位支持库</span>
+yum -y install glibc.i686 libstdc++.i686 libcurl4-gnutls-dev.i686 libcurl.i686 screen
+</code></pre></div><p>安装完毕之后，检查是否存在<mark>/usr/lib/libcurl.so.4</mark>文件，后面会用到。</p>
+<p>新增一个用户dst并设置他的密码，<mark>使用新用户登录</mark>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">useradd dst
+passwd dst
+</code></pre></div><p>在服务器端下载steam命令行版本</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">mkdir ~/steamcmd <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/steamcmd
+wget <span class="s2">&#34;https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz&#34;</span>
+tar -zxvf steamcmd_linux.tar.gz
+</code></pre></div><p>匿名登录steam并设置饥荒服务器的游戏文件夹，查看更多steamcmd命令点击<a href="https://developer.valvesoftware.com/wiki/SteamCMD:zh-cn">这里 </a></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">./steamcmd.sh +login anonymous +force_install_dir ~/dst +app_update <span class="m">343050</span> validate +quit
+</code></pre></div><p>修复依赖问题</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">cp  /usr/lib/libcurl.so.4   ~/dst/bin/lib32/libcurl-gnutls.so.4
+</code></pre></div><p>创建启动脚本</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> ~/dst/bin/
+<span class="nb">echo</span> ./dontstarve_dedicated_server_nullrenderer -console -cluster MyDediServer -shard Master &gt; dst_overworld.sh
+<span class="c1">#创建世界运行脚本</span>
+<span class="nb">echo</span> ./dontstarve_dedicated_server_nullrenderer -console -cluster MyDediServer -shard Caves &gt; dst_caves.sh
+<span class="c1">#创建洞穴运行脚本</span>
+
+sh dst_overworld.sh
+<span class="c1">#待出现Your Server Will Not Start后，按Ctrl+C终止进程</span>
+sh dst_caves.sh
+<span class="c1">#待出现Your Server Will Not Start后，按Ctrl+C终止进程</span>
+rm -rf ~/.klei/DoNotStarveTogether/Cluster_*
+<span class="c1">#删除之前创建的默认文件</span>
+</code></pre></div><p>运行完成上述的命令之后，在<mark> ~/.klei/DoNotStarveTogether/ </mark>会生成一个<mark>MyDediServer</mark>文件夹。</p>
+<p>在MyDediServer目录创建adminlist.txt（管理员名单）和banlist.txt（黑名单），名单中填写klei id以<mark>KU_</mark>开头，可在<a href="https://accounts.klei.com/account/info">klei</a>官方网站查询。</p>
+<p>后续需要对该文件夹进行配置最终完成下图的目录结构</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/07/04/NxUhrR.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<ul>
+<li>Caves（洞穴配置文件夹），Master（世界地图配置文件夹）</li>
+<li>leveldataoverride.lua（地图配置文件），modoverrides.lua（mod配置文件）</li>
+<li>server.ini（独立配置文件）参数设置参考附录</li>
+<li>adminlist.txt（管理员名单），banlist.txt（黑名单）</li>
+<li>cluster.ini（全局配置文件）参数设置参考附录</li>
+<li>cluster_token.txt（Token配置文件）</li>
+</ul>
+<h2 id="上传游戏配置">上传游戏配置</h2>
+<p>打开游戏，创建世界，在创建世界过程中，选择自己需要设置的选项、是否添加是山洞、服务器mod等，直到角色选择界面，选择退出</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/17/NAThLj.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>在主界面点击游戏数据</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/17/NA7PfK.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>在弹出的文件管理界面找到自己的存档文件夹（以Cluster_开头的）</p>
+<p>将Caves中的leveldataoverride.lua和modoverrides.lua拷贝到服务器的拷贝到服务器的~/.klei/DoNotStarveTogether/MyDediServer/Caves/中</p>
+<p>将Master中的leveldataoverride.lua和modoverrides.lua拷贝到服务器的拷贝到服务器的~/.klei/DoNotStarveTogether/MyDediServer/Master/中</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/17/NAvRSI.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h2 id="配置token及独立配置文件">配置Token及独立配置文件</h2>
+<p>登录<a href="https://accounts.klei.com/account/info">klei</a>官方网站，按照下面图片的步骤一步步来。</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/17/NAoLqA.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/17/NATirj.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/17/NATmGT.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/07/04/Nxyp80.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/17/NATtJK.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>最后得到了一个MyDediServer的文件夹，对文件中的cluster.ini进行配置（参考附录），将文件夹中的文件按照下图上传到服务器中。</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/07/20/UhmPw8.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h2 id="配置mod">配置mod</h2>
+<p>找到存档中/Master/modoverrides.lua文件以文本形式打开。</p>
+<p>文件内容中的<mark>[workshop-9位数字]</mark>，这9位数字为mod的id，记录下全部的mod id</p>
+<p>在服务器~/dst/mods/文件夹中找到dedicated_server_mods_setup.lua文件，在文件末尾以<mark>ServerModSetup(&ldquo;9位数字id&rdquo;)</mark>的形式追加内容，如下图所示。</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/07/04/Nx42WQ.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h2 id="运行服务器">运行服务器</h2>
+<p>使用screen运行脚本</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> ~/dst/bin/
+screen
+sh dst_overworld.sh
+</code></pre></div><p>当出现下面的日志时即为成功</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">Caves:  <span class="o">[</span>00:20:50<span class="o">]</span>: Registering slave in EU lobby
+</code></pre></div><p>按Ctrl + a 然后按 d 将程序切换到后台执行，重复上面的步骤执行 dst_caves.sh</p>
+<p>后台执行的程序可以通过<code>screen -ls</code> 命令 查看后台执行的虚拟终端id（四位数字），使用 <code> screen  -r id </code> 命令进入虚拟终端 ，在虚拟终端输入<code>c_shutdown()</code>结束服务器运行。</p>
+<p>下面是screen常用命令及释义：</p>
+<ul>
+<li><code>screen</code>	创建新的虚拟终端</li>
+<li><code>screen -ls</code>	查看所有正在运行的虚拟终端</li>
+<li><code>screen -r id</code>	进入某一个虚拟终端</li>
+<li><code>ctrl + a  d</code>	退出虚拟终端（不关闭） <mark>需要在虚拟终端里输入 </mark></li>
+<li><code>exit</code>	退出虚拟终端（关闭） <mark>需要在虚拟终端里输入 </mark></li>
+</ul>
+<h2 id="附录">附录</h2>
+<h3 id="clusterini">cluster.ini</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>MISC<span class="o">]</span>
+<span class="nv">max_snapshots</span> <span class="o">=</span> <span class="m">6</span>                  <span class="c1"># 最大快照数，决定了可回滚的天数</span>
+<span class="nv">console_enabled</span> <span class="o">=</span> <span class="nb">true</span>             <span class="c1"># 是否开启控制台</span>
+ 
+<span class="o">[</span>SHARD<span class="o">]</span>
+<span class="nv">shard_enabled</span> <span class="o">=</span> <span class="nb">true</span>               <span class="c1"># 服务器共享，要开启洞穴服务器的必须启用</span>
+<span class="nv">bind_ip</span> <span class="o">=</span> 127.0.0.1                <span class="c1"># 服务器监听的地址，当所有实例都运行在同一台机器时，可填写 127.0.0.1，会被 server .ini 覆盖</span>
+<span class="nv">master_ip</span> <span class="o">=</span> 127.0.0.1              <span class="c1"># master 服务器的 IP，针对非 master 服务器，若与 master 服务器运行在同一台机器时，可填写 127.0.0.1，会被 server.ini 覆盖</span>
+<span class="nv">master_port</span> <span class="o">=</span> <span class="m">10888</span>                <span class="c1"># 监听 master 服务器的 UDP 端口，所有连接至 master 服务器的非 master 服务器必须相同</span>
+<span class="nv">cluster_key</span> <span class="o">=</span> dst                  <span class="c1"># 连接密码，每台服务器必须相同，会被 server.ini 覆盖</span>
+ 
+<span class="o">[</span>STEAM<span class="o">]</span>
+<span class="nv">steam_group_only</span> <span class="o">=</span> <span class="nb">false</span>           <span class="c1"># 只允许某 Steam 组的成员加入</span>
+<span class="nv">steam_group_id</span> <span class="o">=</span> <span class="m">0</span>                 <span class="c1"># 指定某个 Steam 组，填写组 ID</span>
+<span class="nv">steam_group_admins</span> <span class="o">=</span> <span class="nb">false</span>         <span class="c1"># 开启后，Steam 组的管理员拥有服务器的管理权限</span>
+ 
+<span class="o">[</span>NETWORK<span class="o">]</span>
+<span class="nv">offline_server</span> <span class="o">=</span> <span class="nb">false</span>             <span class="c1"># 离线服务器，只有局域网用户能加入，并且所有依赖于 Steam 的任何功能都无效，比如说饰品掉落</span>
+<span class="nv">tick_rate</span> <span class="o">=</span> <span class="m">15</span>                     <span class="c1"># 每秒通信次数，越高游戏体验越好，但是会加大服务器负担</span>
+<span class="nv">whitelist_slots</span> <span class="o">=</span> <span class="m">0</span>                <span class="c1"># 为白名单用户保留的游戏位</span>
+<span class="nv">cluster_password</span> <span class="o">=</span>                 <span class="c1"># 游戏密码，不设置表示无密码</span>
+<span class="nv">cluster_name</span> <span class="o">=</span> ttionya <span class="nb">test</span>        <span class="c1"># 游戏房间名称</span>
+<span class="nv">cluster_description</span> <span class="o">=</span> description  <span class="c1"># 游戏房间描述</span>
+<span class="nv">lan_only_cluster</span> <span class="o">=</span> <span class="nb">false</span>           <span class="c1"># 局域网游戏</span>
+<span class="nv">cluster_intention</span> <span class="o">=</span> madness        <span class="c1"># 游戏偏好，可选 cooperative, competitive, social, or madness，随便设置，没卵用</span>
+ 
+<span class="o">[</span>GAMEPLAY<span class="o">]</span>
+<span class="nv">max_players</span> <span class="o">=</span> <span class="m">16</span>                   <span class="c1"># 最大游戏人数</span>
+<span class="nv">pvp</span> <span class="o">=</span> <span class="nb">true</span>                         <span class="c1"># 能不能攻击其他玩家，能不能给其他玩家喂屎</span>
+<span class="nv">game_mode</span> <span class="o">=</span> survival               <span class="c1"># 游戏模式，可选 survival, endless or wilderness，与玩家死亡后的负面影响有关</span>
+<span class="nv">pause_when_empty</span> <span class="o">=</span> <span class="nb">false</span>           <span class="c1"># 没人服务器暂停，刷天数必备</span>
+<span class="nv">vote_kick_enabled</span> <span class="o">=</span> <span class="nb">false</span>          <span class="c1"># 投票踢人</span>
+</code></pre></div><h3 id="serverini">server.ini</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>SHARD<span class="o">]</span>
+<span class="nv">is_master</span> <span class="o">=</span> <span class="nb">true</span> /false      <span class="c1"># 是否是 master 服务器，只能存在一个 true，其他全是 false</span>
+<span class="nv">name</span> <span class="o">=</span> caves                 <span class="c1"># 针对非 master 服务器的名称</span>
+<span class="nv">id</span> <span class="o">=</span> ???                     <span class="c1"># 随机生成，不用加入该属性</span>
+ 
+<span class="o">[</span>STEAM<span class="o">]</span>
+<span class="nv">authentication_port</span> <span class="o">=</span> <span class="m">8766</span>   <span class="c1"># Steam 用的端口，确保每个实例都不相同</span>
+<span class="nv">master_server_port</span> <span class="o">=</span> <span class="m">27016</span>   <span class="c1"># Steam 用的端口，确保每个实例都不相同</span>
+ 
+<span class="o">[</span>NETWORK<span class="o">]</span>
+<span class="nv">server_port</span> <span class="o">=</span> <span class="m">10999</span>          <span class="c1"># 监听的 UDP 端口，只能介于 10998 - 11018 之间，确保每个实例都不相同</span>
+</code></pre></div>
+      </div><blockquote class="post-copyright">
+  <div class="content">
+      <span class="post-time">
+        最后更新时间：
+        <time datetime="2019-12-20 00:00:00 &#43;0000 UTC" itemprop="dateUpdated">
+            2019年12月20日
+        </time>
+    </span>
+    <br>
+    原始链接：
+    <a href="https://scp131.github.io/dontstrave/" target="_blank" rel="external">
+      https://scp131.github.io/dontstrave/
+    </a>
+  </div>
+
+  <footer>
+      <a href="https://scp131.github.io/">
+          <img src="/img/avatar.webp" alt="Scp131">
+          Scp131
+      </a>
+  </footer>
+</blockquote><div class="post-footer" id="post-footer">
+<ul class="article-tag-list">
+&nbsp;
+      <li class="article-tag-list-item">
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/game/">
+            Game 
+          </a>
+        </li>
+      
+</ul><div class="page-share-wrap"><div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2fdontstrave%2f&title=%e9%a5%a5%e8%8d%92%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%90%ad%e5%bb%ba%e6%95%99%e7%a8%8b&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2fdontstrave%2f&title=%e9%a5%a5%e8%8d%92%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%90%ad%e5%bb%ba%e6%95%99%e7%a8%8b&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2fdontstrave%2f" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=%e9%a5%a5%e8%8d%92%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8%e6%90%ad%e5%bb%ba%e6%95%99%e7%a8%8b&url=https%3a%2f%2fscp131.github.io%2fdontstrave%2f&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2fdontstrave%2f" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+ 
+<a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+    <i class="icon icon-share-alt icon-lg"></i>
+  </a>    
+</div> </div>
+
+    </div><nav class="post-nav flex-row flex-justify-between ">
+      
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/spring-aop/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">AOP及相关原理探究</h4>
+      </a>
+    </div><div class="waves-block waves-effect next">
+      <a href="/git/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Git总结</h4>
+      </a>
+    </div></nav><div class="comments vcomment v" id="comments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#comments',
+        notify: 'false',
+        verify: 'false',
+        appId: "OIMzeDHmePmzFKoz8XjwiiIJ-gzGzoHsz",
+        appKey: "H5k568nOnKRYMa48PiCWQEk9",
+        avatar: "retro",
+        placeholder: "请填写邮箱信息以便及时收到回复哦(。・∀・)ノ",
+        pageSize: "10"
+    })
+</script></article>
+</div><footer class="footer">
+          
+    <div class="top">
+        <p>
+            <span>
+              <a href="/index.xml" target="_blank" class="rss" title="rss" rel="noopener noreffer me"><i class="icon icon-lg icon-rss"></i></a>
+            </span>
+            <span>
+              博客内容遵循 
+              <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a>
+            </span>
+        </p>
+    </div>
+    
+    <div class="bottom">
+        <p>
+          <span>Scp131&copy;2021
+                  
+          </span>
+          
+          <span>
+              
+              <a href="http://www.miitbeian.gov.cn/" target="_blank">豫ICP备123456789号-1</a>
+                
+              <br>
+              
+              Power by <a href="https://gohugo.io/" target="_blank">Hugo</a> 
+              Theme 
+              <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+          </span>
+        </p>
+    </div>
+</footer></main>
+        <div class="mask" id="mask"></div><a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light">
+  <span class="icon icon-lg icon-chevron-up"></span>
+</a><div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=&title=Scp%20131&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=&title=Scp%20131&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Scp%20131&url=&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    
+ <div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="/img/wx.png" alt="微信分享二维码">
+</div>
+
+</body><div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+<script type="application/javascript" src="/lib/waves/waves.min.js"></script>
+
+
+
+
+<script type="application/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script>
+
+
+<script type="text/javascript">
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true, SINGLE:  true  };
+</script>
+
+
+<script type="application/javascript" src="/js/main.min.js"></script>
+
+
+<script type="application/javascript" src="/js/search.min.js" async></script></html>

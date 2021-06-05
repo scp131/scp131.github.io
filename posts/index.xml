@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Scp 131</title>
+    <link>https://scp131.github.io/posts/</link>
+    <description>Recent content in Posts on Scp 131</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
+    <webMaster>1355337315@qq.com (Kmiss)</webMaster>
+    <lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker</title>
+      <link>https://scp131.github.io/docker/</link>
+      <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AOP及相关原理探究</title>
+      <link>https://scp131.github.io/spring-aop/</link>
+      <pubDate>Thu, 05 Mar 2020 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/spring-aop/</guid>
+      <description>本次文章主要对AOP和AOP的实现原理进行探究。 代</description>
+    </item>
+    
+    <item>
+      <title>饥荒云服务器搭建教程</title>
+      <link>https://scp131.github.io/dontstrave/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/dontstrave/</guid>
+      <description>环境准备 饥荒的服务器项目为32位，如果系统为64位</description>
+    </item>
+    
+    <item>
+      <title>Git总结</title>
+      <link>https://scp131.github.io/git/</link>
+      <pubDate>Wed, 18 Dec 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/git/</guid>
+      <description>Git是一种版本标准化工具，是目前最受欢迎的团体协</description>
+    </item>
+    
+    <item>
+      <title>线程基本使用</title>
+      <link>https://scp131.github.io/thread-1/</link>
+      <pubDate>Thu, 12 Dec 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/thread-1/</guid>
+      <description>程序 指令和数据的有序集合 静态概念 进程 系统资源分配的</description>
+    </item>
+    
+    <item>
+      <title>java锁初探</title>
+      <link>https://scp131.github.io/thread/</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/thread/</guid>
+      <description>同步代码块 public class Test{ private Object o = new Object(); private int count = 0; public void test1(){ //其</description>
+    </item>
+    
+    <item>
+      <title>使用FDS搭建图床</title>
+      <link>https://scp131.github.io/fdfs/</link>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/fdfs/</guid>
+      <description>FDS服务器搭建 架构介绍 FastDFS是使用c语言</description>
+    </item>
+    
+    <item>
+      <title>Java反射</title>
+      <link>https://scp131.github.io/reflect/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/reflect/</guid>
+      <description>注解 元注解 @Inherited 注解可以被子类继承 @Documented 文档注释会包含在j</description>
+    </item>
+    
+    <item>
+      <title>Lambda</title>
+      <link>https://scp131.github.io/lambda/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/lambda/</guid>
+      <description>List新增方法 forEach users.forEach(u -&amp;gt; { System.out.println(u.getName + &amp;#34;----&amp;gt;&amp;#34; + u.getAge); }); users.forEach(System.out::println); removeIf users.remove(u -&amp;gt; u.getAge()&amp;gt;3); replaceAll users.replaceAll(u</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot自动配置原理</title>
+      <link>https://scp131.github.io/springboot-auto/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/springboot-auto/</guid>
+      <description>将启动类作为切入点，启动类的代码如下 @SpringBootApplication public class DemoApplication { public static</description>
+    </item>
+    
+    <item>
+      <title>Model类常用操作</title>
+      <link>https://scp131.github.io/json/</link>
+      <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/json/</guid>
+      <description>Jackson 在使用序列化反序列化之前保证model类有Set</description>
+    </item>
+    
+    <item>
+      <title>调教你的Idea</title>
+      <link>https://scp131.github.io/idea/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/idea/</guid>
+      <description>配置idea 我的idea常用配置 1、基本配置 配置U</description>
+    </item>
+    
+    <item>
+      <title>算法备忘录</title>
+      <link>https://scp131.github.io/algorithm-note/</link>
+      <pubDate>Tue, 21 Aug 2018 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/algorithm-note/</guid>
+      <description>时间复杂度 O( 1 ) &amp;lt; O( logn ) &amp;lt; O( n ) &amp;lt; O( n^2^ ) 2333 线性表 存</description>
+    </item>
+    
+    <item>
+      <title>Linux备忘录</title>
+      <link>https://scp131.github.io/linux-note/</link>
+      <pubDate>Mon, 20 Aug 2018 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/linux-note/</guid>
+      <description>安装JDK mv jdk.tar /opt tar -zxvf jdk.tar vim /etc/profile #在文档中添加如下代码 export</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot备忘录(基础应用)</title>
+      <link>https://scp131.github.io/springboot-note-1/</link>
+      <pubDate>Sun, 19 Aug 2018 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/springboot-note-1/</guid>
+      <description>创建项目 外源项目导入 访问SpringBoot快速创</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot备忘录(数据库操作)</title>
+      <link>https://scp131.github.io/springboot-note-2/</link>
+      <pubDate>Sat, 18 Aug 2018 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/springboot-note-2/</guid>
+      <description>Bean转换类 释义 PO 持久层对象，面向数据库，只存在</description>
+    </item>
+    
+    <item>
+      <title>SpringBoot备忘录(前端)</title>
+      <link>https://scp131.github.io/springboot-note-3/</link>
+      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/springboot-note-3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SpringBoot搭建SSM</title>
+      <link>https://scp131.github.io/springboot-note-4/</link>
+      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/springboot-note-4/</guid>
+      <description>集成lombok idea下载插件lombok pom.xml &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.projectlombok&amp;lt;/groupId&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>test markdown</title>
+      <link>https://scp131.github.io/basic-elements/</link>
+      <pubDate>Mon, 16 Apr 2018 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/basic-elements/</guid>
+      <description>隐藏文字 www.baidu.com Let&amp;rsquo;s start with all possible headings. The HTML &amp;lt;h1&amp;gt;—&amp;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithm on Scp 131</title>
+    <link>https://scp131.github.io/tags/algorithm/</link>
+    <description>Recent content in algorithm on Scp 131</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
+    <webMaster>1355337315@qq.com (Kmiss)</webMaster>
+    <lastBuildDate>Tue, 21 Aug 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>算法备忘录</title>
+      <link>https://scp131.github.io/algorithm-note/</link>
+      <pubDate>Tue, 21 Aug 2018 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/algorithm-note/</guid>
+      <description>时间复杂度 O( 1 ) &amp;lt; O( logn ) &amp;lt; O( n ) &amp;lt; O( n^2^ ) 2333 线性表 存</description>
+    </item>
+    
+  </channel>
+</rss>

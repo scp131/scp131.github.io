@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="theme-color" content="#3F51B5">
+        <meta name="keywords" content="Scp131, 后端开发, 个人博客,java,spring,算法,idea,docker, material design">
+        <meta name="description" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Scp131 Blog">
+        <meta property="og:url" content="https://scp131.github.io">
+        <meta property="og:site_name" content="Scp131 Blog">
+        <meta property="og:description" content="">
+        <title>算法备忘录 | Scp 131</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="canonical" href="https://scp131.github.io">
+
+<link rel="styleSheet"  href="/css/style.min.css"/></head>
+    <body><div id="loading" class="active"></div>
+<aside id="menu"  class="hide"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.webp)">
+      <div class="brand">
+        <a href="" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.webp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kmiss</h5>
+          <a href="mailto:1355337315@qq.com" title="1355337315@qq.com" class="mail">1355337315@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+ 
+            <li class="waves-block waves-effect ">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/categories/">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect ">
+              <a href="/tags/">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/links/">
+                <i class="icon icon-lg icon-link"></i>
+                Links
+              </a>
+            </li>
+            
+            
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/scp131" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<main id="main">
+          <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">算法备忘录</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="请输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    <div class="container fade-scale">
+        <h1 class="title">算法备忘录</h1>
+        <h5 class="subtitle">
+            
+            
+            
+              <time datetime="2018-08-21 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
+                2018年08月21日
+              </time>
+            
+        </h5>
+    </div>
+    
+    
+</header>
+<div class="container body-wrap"><div class="domHide">
+   <nav id="TableOfContents">
+  <ul>
+    <li><a href="#滑动窗口算法">滑动窗口算法</a>
+      <ul>
+        <li><a href="#前提">前提</a></li>
+        <li><a href="#示例">示例</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+    </nav>
+</aside>
+  <article id="post-multipart-x-mixed-replace" class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+    
+      <h1 class="post-card-title">算法备忘录</h1><div class="post-meta">
+             
+     
+     <time class="post-time" title="2018-08-21 00:00:00 &#43;0000 UTC" datetime="2018-08-21 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
+        2018年08月21日
+     </time>
+     
+     
+     <ul class="article-category-list">
+     <li class="article-category-list-item">
+            <a class="article-category-list-link" href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E5%A4%87%E5%BF%98%E5%BD%95/">我的备忘录</a>
+          </li>
+        
+        
+     </ul>
+         
+     
+     <span id="busuanzi_container_page_pv" title="文章总阅读量" >
+        <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv">233</span>
+    </span>
+</div><div class="post-content" id="post-content" itemprop="postContent">
+          <p>时间复杂度</p>
+<p>O( 1 ) &lt; O( logn ) &lt; O( n ) &lt; O( n^2^ )</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/28/NRAlfs.png" title=" 2333">
+  </div>
+  <div class="image-caption"> 2333 </div>
+</figure></p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/28/NRkxOK.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/28/NRA3pn.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/28/NRAASI.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>线性表</p>
+<p>存在唯一的被称为第一的数据元素</p>
+<p>存在唯一的被称为最后一个的数据元素</p>
+<p>除第一个数据元素之外 其余元素都存在其直接前驱节点</p>
+<p>除最后一个数据元素之外  其余元素都存在其直接后驱节点</p>
+<p>线性表分为两种存储形式分为 顺序存储和链式存储</p>
+<p>顺序存储即为 存储地址相邻</p>
+<p>链式存储在存储地址上不一定相邻 通过指针来实现</p>
+<p>数组的读取、更新的时间复杂度均为T(n)</p>
+<p>数组的删除分为三种情况</p>
+<p>删除头部元素</p>
+<p>删除尾部元素</p>
+<p>删除中间元素</p>
+<p>删除中间元素，需要将删除元素之后的元素向前移动一位。删除末尾元素不需要移动</p>
+<p>删除头部元素需要移动的元素最多</p>
+<p>删除a0需要移动n-1个元素</p>
+<p>删除a1需要移动n-2个元素</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>删除an需要移动0个元素</p>
+<p>( n - 1) + ( n - 2) + ( n - 3)  &hellip;&hellip;&hellip;&hellip;..+ 1  = n ( n - 1 )  /  2</p>
+<p>平均移动次数为 n ( n - 1) / 2   /   n  = ( n -1 ) / 2</p>
+<p>数组的插入分为三种情况</p>
+<p>从头部插入</p>
+<p>从中间插入</p>
+<p>从尾部插入</p>
+<p>从头部插入后面的元素需要依次向后移动，同时数组容量需要增加；从尾部插入不需要移动元素。从中间插入需要将数组扩容同时将元素向后移动。</p>
+<p>插入a0需要移动n个元素</p>
+<p>插入a1需要移动n-1个元素</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>。</p>
+<p>插入an需要移动0个元素</p>
+<p>n + (  n -1 )  + &hellip;&hellip;&hellip;&hellip;&hellip;..+ 2 + 1 = n ( n + 1) / 2</p>
+<p>平均移动次数为 n ( n + 1) / 2   /   ( n + 1)  = ( n -1 ) / 2</p>
+<p>散列表是hahmap存储的一种数据结构</p>
+<p>将key进行hash运算得到其在数组中的位置，然后得到数组中的值</p>
+<p>当有多个key计算出同样的hash的时候，这种情况称为hash冲突</p>
+<p>解决hash冲突有两种方式</p>
+<p>一、开放寻址</p>
+<p>寻找下一个空档位置</p>
+<p>二、链表法</p>
+<p>在当前位置创建链表，并将数据作为尾结点插入，1.8之后为了提高插入和执行效率会转化为红黑树</p>
+<p>当散列表达到一定饱和度之后，需要进行扩容，hashmap的扩容影响因素有两个  当前hashmap的长度和负载因子默认为0.75f   HashMap.Size &gt; Capacity * LoadFactor 将数组进行2倍扩容</p>
+<p>树可以使用数组来表示</p>
+<p>使用数组将树按照从上至下 从左至右  不存在的节点置为空的方式存储到数组中</p>
+<p>如果一个节点的下标为partent_id 那么他的左孩子坐标为  2 * parent_id  + 1，右孩子坐标为  2 * parent_id  + 2</p>
+<p>如果一个节点 left_id 为父节点的左孩子节点 那么他的父节点为 (left_id - 1) / 2</p>
+<p>二叉查找树</p>
+<p>根节点 &gt; 左节点 &gt; 右节点</p>
+<p>查找</p>
+<p>维持相对顺序</p>
+<p>二叉树的遍历</p>
+<p>深度优先遍历 前序遍历  中序遍历  后序遍历</p>
+<p>前序遍历 根 左  右</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/29/Nfz0xK.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>中序遍历 左 根 右</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/29/Nfz7ZQ.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>后序遍历 左 右 根</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/29/NhSPo9.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>广度优先遍历  层序遍历</p>
+<p>数组和链表是其余数据结构实现的基石，例如栈、堆、树、图这些都可以使用数组和链表实现</p>
+<p>而栈、堆、树、图等都是逻辑上的概念</p>
+<h2 id="滑动窗口算法">滑动窗口算法</h2>
+<p>将首尾指针内的数据看作一个队列（窗口），这个队列随着指针的变化在不断的移动，即滑动窗口。</p>
+<h3 id="前提">前提</h3>
+<ul>
+<li>需要首尾指针</li>
+<li>首尾指针在不断的移动</li>
+<li>首尾指针之内的内容为目标数据</li>
+<li>目标数据存储在辅助容器中</li>
+</ul>
+<h3 id="示例">示例</h3>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//寻找字符串中最长的字串
+</span><span class="c1">//字串为首尾指针之间的字符串
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="k">for</span><span class="o">(;</span><span class="n">end</span> <span class="o">&lt;</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">end</span><span class="o">++){</span>
+    <span class="kt">char</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">end</span><span class="o">);</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">contatinKey</span><span class="o">(</span><span class="n">temp</span><span class="o">)){</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">max</span><span class="o">,</span><span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">temp</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="n">max</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">max</span><span class="o">,</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+    <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">temp</span><span class="o">,</span><span class="n">end</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div>
+      </div><blockquote class="post-copyright">
+  <div class="content">
+      <span class="post-time">
+        最后更新时间：
+        <time datetime="2018-08-21 00:00:00 &#43;0000 UTC" itemprop="dateUpdated">
+            2018年08月21日
+        </time>
+    </span>
+    <br>
+    原始链接：
+    <a href="https://scp131.github.io/algorithm-note/" target="_blank" rel="external">
+      https://scp131.github.io/algorithm-note/
+    </a>
+  </div>
+
+  <footer>
+      <a href="https://scp131.github.io/">
+          <img src="/img/avatar.webp" alt="Scp131">
+          Scp131
+      </a>
+  </footer>
+</blockquote><div class="post-footer" id="post-footer">
+<ul class="article-tag-list">
+&nbsp;
+      <li class="article-tag-list-item">
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/algorithm/">
+            algorithm 
+          </a>
+        </li>
+      
+</ul><div class="page-share-wrap"><div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2falgorithm-note%2f&title=%e7%ae%97%e6%b3%95%e5%a4%87%e5%bf%98%e5%bd%95&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2falgorithm-note%2f&title=%e7%ae%97%e6%b3%95%e5%a4%87%e5%bf%98%e5%bd%95&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2falgorithm-note%2f" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=%e7%ae%97%e6%b3%95%e5%a4%87%e5%bf%98%e5%bd%95&url=https%3a%2f%2fscp131.github.io%2falgorithm-note%2f&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2falgorithm-note%2f" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+ 
+<a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+    <i class="icon icon-share-alt icon-lg"></i>
+  </a>    
+</div> </div>
+
+    </div><nav class="post-nav flex-row flex-justify-between ">
+      
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/idea/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">调教你的Idea</h4>
+      </a>
+    </div><div class="waves-block waves-effect next">
+      <a href="/linux-note/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Linux备忘录</h4>
+      </a>
+    </div></nav><div class="comments vcomment v" id="comments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#comments',
+        notify: 'false',
+        verify: 'false',
+        appId: "OIMzeDHmePmzFKoz8XjwiiIJ-gzGzoHsz",
+        appKey: "H5k568nOnKRYMa48PiCWQEk9",
+        avatar: "retro",
+        placeholder: "请填写邮箱信息以便及时收到回复哦(。・∀・)ノ",
+        pageSize: "10"
+    })
+</script></article>
+</div><footer class="footer">
+          
+    <div class="top">
+        <p>
+            <span>
+              <a href="/index.xml" target="_blank" class="rss" title="rss" rel="noopener noreffer me"><i class="icon icon-lg icon-rss"></i></a>
+            </span>
+            <span>
+              博客内容遵循 
+              <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a>
+            </span>
+        </p>
+    </div>
+    
+    <div class="bottom">
+        <p>
+          <span>Scp131&copy;2021
+                  
+          </span>
+          
+          <span>
+              
+              <a href="http://www.miitbeian.gov.cn/" target="_blank">豫ICP备123456789号-1</a>
+                
+              <br>
+              
+              Power by <a href="https://gohugo.io/" target="_blank">Hugo</a> 
+              Theme 
+              <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+          </span>
+        </p>
+    </div>
+</footer></main>
+        <div class="mask" id="mask"></div><a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light">
+  <span class="icon icon-lg icon-chevron-up"></span>
+</a><div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=&title=Scp%20131&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=&title=Scp%20131&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Scp%20131&url=&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    
+ <div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="/img/wx.png" alt="微信分享二维码">
+</div>
+
+</body><div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+<script type="application/javascript" src="/lib/waves/waves.min.js"></script>
+
+
+
+
+<script type="application/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script>
+
+
+<script type="text/javascript">
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true, SINGLE:  true  };
+</script>
+
+
+<script type="application/javascript" src="/js/main.min.js"></script>
+
+
+<script type="application/javascript" src="/js/search.min.js" async></script></html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="theme-color" content="#3F51B5">
+        <meta name="keywords" content="Scp131, 后端开发, 个人博客,java,spring,算法,idea,docker, material design">
+        <meta name="description" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Scp131 Blog">
+        <meta property="og:url" content="https://scp131.github.io">
+        <meta property="og:site_name" content="Scp131 Blog">
+        <meta property="og:description" content="">
+        <title>调教你的Idea | Scp 131</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="canonical" href="https://scp131.github.io">
+
+<link rel="styleSheet"  href="/css/style.min.css"/></head>
+    <body><div id="loading" class="active"></div>
+<aside id="menu"  class="hide"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.webp)">
+      <div class="brand">
+        <a href="" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.webp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kmiss</h5>
+          <a href="mailto:1355337315@qq.com" title="1355337315@qq.com" class="mail">1355337315@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+ 
+            <li class="waves-block waves-effect ">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/categories/">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect ">
+              <a href="/tags/">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/links/">
+                <i class="icon icon-lg icon-link"></i>
+                Links
+              </a>
+            </li>
+            
+            
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/scp131" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<main id="main">
+          <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">调教你的Idea</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="请输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    <div class="container fade-scale">
+        <h1 class="title">调教你的Idea</h1>
+        <h5 class="subtitle">
+            
+            
+            
+              <time datetime="2019-07-16 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
+                2019年07月16日
+              </time>
+            
+        </h5>
+    </div>
+    
+    
+</header>
+<div class="container body-wrap"><div class="domHide">
+   <nav id="TableOfContents">
+  <ul>
+    <li><a href="#我的idea常用配置">我的idea常用配置</a>
+      <ul>
+        <li><a href="#1基本配置">1、基本配置</a>
+          <ul>
+            <li><a href="#配置utf-8">配置UTF-8</a></li>
+            <li><a href="#显示行号">显示行号</a></li>
+            <li><a href="#更改字体和字体大小">更改字体和字体大小</a></li>
+            <li><a href="#设置大小写代码提示">设置大小写代码提示</a></li>
+            <li><a href="#自动导包">自动导包</a></li>
+            <li><a href="#自动编译">自动编译</a></li>
+            <li><a href="#main提示main方法">main提示main方法</a></li>
+          </ul>
+        </li>
+        <li><a href="#2主界面配置">2、主界面配置</a>
+          <ul>
+            <li><a href="#显示工具栏">显示工具栏</a></li>
+            <li><a href="#设置idea分配的空间大小">设置idea分配的空间大小</a></li>
+            <li><a href="#保存当前布局">保存当前布局</a></li>
+          </ul>
+        </li>
+        <li><a href="#3集成maven">3、集成maven</a></li>
+        <li><a href="#4集成tomcat">4、集成tomcat</a></li>
+      </ul>
+    </li>
+    <li><a href="#创建项目">创建项目</a>
+      <ul>
+        <li><a href="#1创建普通java项目">1、创建普通java项目</a></li>
+        <li><a href="#2创建javaweb项目">2、创建javaweb项目</a></li>
+        <li><a href="#3创建maven项目">3、创建maven项目</a></li>
+      </ul>
+    </li>
+    <li><a href="#常用快捷键">常用快捷键</a></li>
+  </ul>
+</nav>
+</div>
+
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+    </nav>
+</aside>
+  <article id="post-multipart-x-mixed-replace" class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+    
+      <h1 class="post-card-title">调教你的Idea</h1><div class="post-meta">
+             
+     
+     <time class="post-time" title="2019-07-16 00:00:00 &#43;0000 UTC" datetime="2019-07-16 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
+        2019年07月16日
+     </time>
+     
+     
+     <ul class="article-category-list">
+     <li class="article-category-list-item">
+            <a class="article-category-list-link" href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E8%8F%9C%E9%B8%9F%E6%97%A5%E8%AE%B0/">我的菜鸟日记</a>
+          </li>
+        
+        
+     </ul>
+         
+     
+     <span id="busuanzi_container_page_pv" title="文章总阅读量" >
+        <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv">233</span>
+    </span>
+</div><div class="post-content" id="post-content" itemprop="postContent">
+          <h1 id="配置idea">配置idea</h1>
+<h2 id="我的idea常用配置">我的idea常用配置</h2>
+<h3 id="1基本配置">1、基本配置</h3>
+<h4 id="配置utf-8">配置UTF-8</h4>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQman.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h4 id="显示行号">显示行号</h4>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQn5q.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h4 id="更改字体和字体大小">更改字体和字体大小</h4>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQKP0.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h4 id="设置大小写代码提示">设置大小写代码提示</h4>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQMGV.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h4 id="自动导包">自动导包</h4>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQQ2T.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h4 id="自动编译">自动编译</h4>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQlxU.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h4 id="main提示main方法">main提示main方法</h4>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQ8r4.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="2主界面配置">2、主界面配置</h3>
+<h4 id="显示工具栏">显示工具栏</h4>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQ3MF.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h4 id="设置idea分配的空间大小">设置idea分配的空间大小</h4>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQSUI.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">#下面三行的数据可以自行修改 分别为 JVM堆区内存初始内存分配的大小 JVM最大可用内存  代码缓存
+-Xms2048m
+-Xmx2048m
+-XX:ReservedCodeCacheSize=512m
+</code></pre></div><h4 id="保存当前布局">保存当前布局</h4>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPMzVA.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="3集成maven">3、集成maven</h3>
+<p>下载安装maven  并配置环境变量</p>
+<div class="highlight"><pre class="chroma"><code class="language-tex" data-lang="tex">Path 
+;<span class="c">%M2_HOME%\bin;
+</span><span class="c"></span>
+
+M2<span class="nb">_</span>HOME
+D:<span class="k">\Eclipse</span> EE<span class="k">\apache</span>-maven-3.5.4
+</code></pre></div><p>maven配置文件配置</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">#配置本地仓库文件夹
+<span class="nt">&lt;localRepository&gt;</span>F:\Maven_respo<span class="nt">&lt;/localRepository&gt;</span>
+
+
+#配置阿里云镜像
+<span class="nt">&lt;mirrors&gt;</span>
+    <span class="nt">&lt;mirror&gt;</span>
+        <span class="nt">&lt;id&gt;</span>nexus-aliyun<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Nexus aliyun<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;url&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/mirror&gt;</span>
+<span class="nt">&lt;mirrors&gt;</span>
+    
+    
+#配置java版本
+<span class="nt">&lt;profile&gt;</span>
+<span class="nt">&lt;id&gt;</span>jdk-1.8<span class="nt">&lt;/id&gt;</span>
+<span class="nt">&lt;activation&gt;</span>
+	<span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+	<span class="nt">&lt;jdk&gt;</span>1.8<span class="nt">&lt;/jdk&gt;</span>
+<span class="nt">&lt;/activation&gt;</span>
+<span class="nt">&lt;properties&gt;</span>
+	<span class="nt">&lt;maven.compiler.source&gt;</span>1.8<span class="nt">&lt;/maven.compiler.source&gt;</span>
+	<span class="nt">&lt;maven.compiler.target&gt;</span>1.8<span class="nt">&lt;/maven.compiler.target&gt;</span>
+	<span class="nt">&lt;maven.compiler.compilerVersion&gt;</span>1.8<span class="nt">&lt;/maven.compiler.compilerVersion&gt;</span>
+<span class="nt">&lt;/properties&gt;</span>
+<span class="nt">&lt;/profile&gt;</span>
+</code></pre></div><p>idea集成maven</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQp5t.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>源码自动导入</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/06/04/t0TvFI.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="4集成tomcat">4、集成tomcat</h3>
+<p>点击工具栏</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPMvbd.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>点击 + 号 选择tomcat Server 再选择Local  如果找不到Tomcat Server   则在33 items more里面</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPMjDH.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>设置Tomcat</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQP8f.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>将项目添加到Tomcat</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQi28.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h2 id="创建项目">创建项目</h2>
+<h3 id="1创建普通java项目">1、创建普通java项目</h3>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQFxS.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="2创建javaweb项目">2、创建javaweb项目</h3>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQAKg.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="3创建maven项目">3、创建maven项目</h3>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQErQ.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>修改目录结构</p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/04/15/JPQVbj.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p>修改servlet版本为3.1 (web.xml)</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;web-app</span> <span class="na">xmlns=</span><span class="s">&#34;http://xmlns.jcp.org/xml/ns/javaee&#34;</span>
+         <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">&#34;http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&#34;</span>
+         <span class="na">version=</span><span class="s">&#34;3.1&#34;</span><span class="nt">&gt;</span>
+    
+    
+    
+<span class="nt">&lt;/web-app&gt;</span>
+</code></pre></div><p>修改junit版本为4.11(pom.xml  3.x不支持注解式测试)</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>junit<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>junit<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.11<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>补全依赖 以ssm框架为例(pom.xml)</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 日志 --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>slf4j-api<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.7.12<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>ch.qos.logback<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>logback-core<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>ch.qos.logback<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>logback-classic<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.1<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- 数据库 --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>8.0.11<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>c3p0<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>c3p0<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>0.9.1.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- dao框架依赖:mybatis --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.mybatis<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>mybatis<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>3.3.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span> org.mybatis<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>mybatis-spring<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.2.3<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+
+<span class="c">&lt;!-- servlet web 相关依赖 --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>taglibs<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>standard<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.1.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>jstl<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>jstl<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.fasterxml.jackson.core<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>jackson-databind<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.5.4<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>javax.servlet<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>javax.servlet-api<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- spring 依赖--&gt;</span>
+<span class="c">&lt;!-- spring 核心依赖--&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-core<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.1.7.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-beans<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.1.7.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-context<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.1.7.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- spring dao层依赖 --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-jdbc<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.1.7.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-tx<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.1.7.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- spring web相关的依赖 --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-web<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.1.7.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-webmvc<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.1.7.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+
+<span class="c">&lt;!-- spring test相关依赖 --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>spring-test<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>4.1.7.RELEASE<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><h2 id="常用快捷键">常用快捷键</h2>
+<p><code>Ctrl + Alt + V</code>    快速生成返回值</p>
+<p><code>Alt + Insert</code>    Set/Get	重写 	toString	Constructor	&hellip;&hellip;</p>
+<p><code>Ctrl + Z</code> / <code>Ctrl + Shift + Z</code>    撤销 / 前进</p>
+<p><code>Shift + Ctrl + ↑</code> / <code>Shift + Ctrl +↓</code>    代码块向上/向下移动</p>
+<p><code>Ctrl + Y</code>    删除一行代码</p>
+<br/>
+<p><code>Ctrl + N</code>    查找类</p>
+<p><code>Shift + Ctrl + N</code>    查找文件</p>
+<p><code>Ctrl + P</code>    方法参数提示</p>
+<p><code>Ctrl + Space</code>    代码提示</p>
+<br/>
+<p><code>Ctrl + Alt + O</code>    优化导入类和包</p>
+<p><code>Ctrl + Alt + U</code>    向上查看继承结构</p>
+<p><code>Ctrl + H</code>    打开查看类控制版面</p>
+
+      </div><blockquote class="post-copyright">
+  <div class="content">
+      <span class="post-time">
+        最后更新时间：
+        <time datetime="2019-07-16 00:00:00 &#43;0000 UTC" itemprop="dateUpdated">
+            2019年07月16日
+        </time>
+    </span>
+    <br>
+    原始链接：
+    <a href="https://scp131.github.io/idea/" target="_blank" rel="external">
+      https://scp131.github.io/idea/
+    </a>
+  </div>
+
+  <footer>
+      <a href="https://scp131.github.io/">
+          <img src="/img/avatar.webp" alt="Scp131">
+          Scp131
+      </a>
+  </footer>
+</blockquote><div class="post-footer" id="post-footer">
+<ul class="article-tag-list">
+&nbsp;
+      <li class="article-tag-list-item">
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/ide/">
+            IDE 
+          </a>
+        </li>
+      
+</ul><div class="page-share-wrap"><div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2fidea%2f&title=%e8%b0%83%e6%95%99%e4%bd%a0%e7%9a%84Idea&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2fidea%2f&title=%e8%b0%83%e6%95%99%e4%bd%a0%e7%9a%84Idea&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2fidea%2f" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=%e8%b0%83%e6%95%99%e4%bd%a0%e7%9a%84Idea&url=https%3a%2f%2fscp131.github.io%2fidea%2f&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2fidea%2f" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+ 
+<a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+    <i class="icon icon-share-alt icon-lg"></i>
+  </a>    
+</div> </div>
+
+    </div><nav class="post-nav flex-row flex-justify-between ">
+      
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/json/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Model类常用操作</h4>
+      </a>
+    </div><div class="waves-block waves-effect next">
+      <a href="/algorithm-note/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">算法备忘录</h4>
+      </a>
+    </div></nav><div class="comments vcomment v" id="comments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#comments',
+        notify: 'false',
+        verify: 'false',
+        appId: "OIMzeDHmePmzFKoz8XjwiiIJ-gzGzoHsz",
+        appKey: "H5k568nOnKRYMa48PiCWQEk9",
+        avatar: "retro",
+        placeholder: "请填写邮箱信息以便及时收到回复哦(。・∀・)ノ",
+        pageSize: "10"
+    })
+</script></article>
+</div><footer class="footer">
+          
+    <div class="top">
+        <p>
+            <span>
+              <a href="/index.xml" target="_blank" class="rss" title="rss" rel="noopener noreffer me"><i class="icon icon-lg icon-rss"></i></a>
+            </span>
+            <span>
+              博客内容遵循 
+              <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a>
+            </span>
+        </p>
+    </div>
+    
+    <div class="bottom">
+        <p>
+          <span>Scp131&copy;2021
+                  
+          </span>
+          
+          <span>
+              
+              <a href="http://www.miitbeian.gov.cn/" target="_blank">豫ICP备123456789号-1</a>
+                
+              <br>
+              
+              Power by <a href="https://gohugo.io/" target="_blank">Hugo</a> 
+              Theme 
+              <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+          </span>
+        </p>
+    </div>
+</footer></main>
+        <div class="mask" id="mask"></div><a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light">
+  <span class="icon icon-lg icon-chevron-up"></span>
+</a><div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=&title=Scp%20131&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=&title=Scp%20131&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Scp%20131&url=&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    
+ <div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="/img/wx.png" alt="微信分享二维码">
+</div>
+
+</body><div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+<script type="application/javascript" src="/lib/waves/waves.min.js"></script>
+
+
+
+
+<script type="application/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script>
+
+
+<script type="text/javascript">
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true, SINGLE:  true  };
+</script>
+
+
+<script type="application/javascript" src="/js/main.min.js"></script>
+
+
+<script type="application/javascript" src="/js/search.min.js" async></script></html>

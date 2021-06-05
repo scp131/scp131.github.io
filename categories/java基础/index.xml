@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java基础 on Scp 131</title>
+    <link>https://scp131.github.io/categories/java%E5%9F%BA%E7%A1%80/</link>
+    <description>Recent content in Java基础 on Scp 131</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
+    <webMaster>1355337315@qq.com (Kmiss)</webMaster>
+    <lastBuildDate>Thu, 12 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/categories/java%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>线程基本使用</title>
+      <link>https://scp131.github.io/thread-1/</link>
+      <pubDate>Thu, 12 Dec 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/thread-1/</guid>
+      <description>程序 指令和数据的有序集合 静态概念 进程 系统资源分配的</description>
+    </item>
+    
+    <item>
+      <title>java锁初探</title>
+      <link>https://scp131.github.io/thread/</link>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/thread/</guid>
+      <description>同步代码块 public class Test{ private Object o = new Object(); private int count = 0; public void test1(){ //其</description>
+    </item>
+    
+    <item>
+      <title>Java反射</title>
+      <link>https://scp131.github.io/reflect/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/reflect/</guid>
+      <description>注解 元注解 @Inherited 注解可以被子类继承 @Documented 文档注释会包含在j</description>
+    </item>
+    
+    <item>
+      <title>Lambda</title>
+      <link>https://scp131.github.io/lambda/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/lambda/</guid>
+      <description>List新增方法 forEach users.forEach(u -&amp;gt; { System.out.println(u.getName + &amp;#34;----&amp;gt;&amp;#34; + u.getAge); }); users.forEach(System.out::println); removeIf users.remove(u -&amp;gt; u.getAge()&amp;gt;3); replaceAll users.replaceAll(u</description>
+    </item>
+    
+  </channel>
+</rss>

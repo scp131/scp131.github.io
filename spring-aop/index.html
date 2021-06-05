@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+        <meta name="theme-color" content="#3F51B5">
+        <meta name="keywords" content="Scp131, 后端开发, 个人博客,java,spring,算法,idea,docker, material design">
+        <meta name="description" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Scp131 Blog">
+        <meta property="og:url" content="https://scp131.github.io">
+        <meta property="og:site_name" content="Scp131 Blog">
+        <meta property="og:description" content="">
+        <title>AOP及相关原理探究 | Scp 131</title>
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="canonical" href="https://scp131.github.io">
+
+<link rel="styleSheet"  href="/css/style.min.css"/></head>
+    <body><div id="loading" class="active"></div>
+<aside id="menu"  class="hide"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.webp)">
+      <div class="brand">
+        <a href="" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.webp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Kmiss</h5>
+          <a href="mailto:1355337315@qq.com" title="1355337315@qq.com" class="mail">1355337315@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+ 
+            <li class="waves-block waves-effect ">
+              <a href="/">
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/categories/">
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect ">
+              <a href="/tags/">
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+            
+            <li class="waves-block waves-effect ">
+              <a href="/links/">
+                <i class="icon icon-lg icon-link"></i>
+                Links
+              </a>
+            </li>
+            
+            
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/scp131" target="_blank">
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</aside>
+<main id="main">
+          <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">AOP及相关原理探究</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="请输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    
+    <div class="container fade-scale">
+        <h1 class="title">AOP及相关原理探究</h1>
+        <h5 class="subtitle">
+            
+            
+            
+              <time datetime="2020-03-05 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
+                2020年03月05日
+              </time>
+            
+        </h5>
+    </div>
+    
+    
+</header>
+<div class="container body-wrap"><div class="domHide">
+   <nav id="TableOfContents">
+  <ul>
+    <li><a href="#代理模式">代理模式</a>
+      <ul>
+        <li><a href="#静态代理">静态代理</a></li>
+        <li><a href="#动态代理">动态代理</a></li>
+      </ul>
+    </li>
+    <li><a href="#spring中的aop">Spring中的Aop</a>
+      <ul>
+        <li><a href="#aop的相关概念">AOP的相关概念</a></li>
+        <li><a href="#spring-aop的原理">Spring AOP的原理</a></li>
+        <li><a href="#cglib-jdk两种实现方式">CGLIB JDK两种实现方式</a>
+          <ul>
+            <li><a href="#内部类实现">内部类实现</a></li>
+            <li><a href="#拦截器实现">拦截器实现</a></li>
+            <li><a href="#小结">小结</a></li>
+          </ul>
+        </li>
+        <li><a href="#spring-aop具体实现">Spring AOP具体实现</a>
+          <ul>
+            <li><a href="#半自动">半自动</a></li>
+            <li><a href="#全自动">全自动</a></li>
+            <li><a href="#注解">注解</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+<aside class="post-widget">
+    <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+        <h4>TOC</h4>
+    </nav>
+</aside>
+  <article id="post-multipart-x-mixed-replace" class="post-article article-type-post fade" itemprop="blogPost">
+    <div class="post-card">
+    
+      <h1 class="post-card-title">AOP及相关原理探究</h1><div class="post-meta">
+             
+     
+     <time class="post-time" title="2020-03-05 00:00:00 &#43;0000 UTC" datetime="2020-03-05 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
+        2020年03月05日
+     </time>
+     
+     
+     <ul class="article-category-list">
+     <li class="article-category-list-item">
+            <a class="article-category-list-link" href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E8%8F%9C%E9%B8%9F%E6%97%A5%E8%AE%B0/">我的菜鸟日记</a>
+          </li>
+        
+        
+     </ul>
+         
+     
+     <span id="busuanzi_container_page_pv" title="文章总阅读量" >
+        <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv">233</span>
+    </span>
+</div><div class="post-content" id="post-content" itemprop="postContent">
+          <p>本次文章主要对AOP和AOP的实现原理进行探究。</p>
+<h2 id="代理模式">代理模式</h2>
+<p>谈起Aop的实现原理离不开代理模式，代理模式的目的是在不改变源代码逻辑的基础之上添加对应的处理逻辑，实现对原始类方法的增强。代理模式又分为动态和静态代理。下面将会介绍JDK两种代理模式的具体实现，在开始具体代码之前，先准备两个通用类：</p>
+<p>目标类接口</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserService</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">addUser</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>目标类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImpl</span> <span class="kd">implements</span> <span class="n">UserService</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">addUser</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;ioc add user&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h3 id="静态代理">静态代理</h3>
+<p>在使用静态代理要注意以下两点</p>
+<ul>
+<li><mark>目标类实现了相关的接口</mark></li>
+<li><mark>代理类和目标类实现相同的接口</mark></li>
+</ul>
+<p>代理类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProxyService</span> <span class="kd">implements</span> <span class="n">UserService</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="n">UserService</span> <span class="n">userService</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">ProxyService</span><span class="o">(</span><span class="n">UserService</span> <span class="n">userService</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">userService</span> <span class="o">=</span> <span class="n">userService</span><span class="o">;</span> 
+    <span class="o">}</span>
+    
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">addUser</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;proxy service before ........&#34;</span><span class="o">);</span>
+        <span class="n">userService</span><span class="o">.</span><span class="na">addUser</span><span class="o">();</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;proxy service after ........&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>测试类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="n">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserServiceImpl</span><span class="o">();</span>
+    <span class="n">ProxyService</span> <span class="n">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ProxyService</span><span class="o">(</span><span class="n">userService</span><span class="o">);</span>
+    <span class="n">proxy</span><span class="o">.</span><span class="na">addUser</span><span class="o">();</span>  
+<span class="o">}</span>
+</code></pre></div><p>通过上面的代码可以看出，代理类的生成时机为编译期，效率相对较高。如果需要代理很多类的时候，需要创建大量的代理类，不利于扩展。</p>
+<h3 id="动态代理">动态代理</h3>
+<p>动态代理中代理类和目标类不需要实现同样的接口，但目标类必须实现相关接口。</p>
+<p>代理类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProxyService</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="n">UserService</span> <span class="n">userService</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">ProxyService</span><span class="o">(</span><span class="n">UserService</span> <span class="n">userService</span><span class="o">){</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">userService</span> <span class="o">=</span> <span class="n">userService</span><span class="o">;</span> 
+    <span class="o">}</span>
+    
+	<span class="kd">public</span> <span class="n">UserService</span> <span class="nf">createService</span><span class="o">(){</span>
+        <span class="cm">/**
+</span><span class="cm">         *参数1 类加载器  动态代理创建在运行时 需要类加载器加载到内存中
+</span><span class="cm">         *参数2 代理类类需要实现的接口	使用目标类实现的接口即可
+</span><span class="cm">         *参数3 处理类	主要用于处理代理类相关方法
+</span><span class="cm">         **/</span>
+        <span class="n">UserService</span> <span class="n">proxyService</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserService</span><span class="o">)</span><span class="n">Proxy</span><span class="o">.</span><span class="na">newProxyInstance</span><span class="o">(</span><span class="n">MyAspect</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getClassLoader</span><span class="o">(),</span>
+				<span class="n">userService</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getInterfaces</span><span class="o">(),</span>
+				<span class="k">new</span> <span class="n">InvocationHandler</span><span class="o">()</span> <span class="o">{</span>
+					
+                    <span class="cm">/**
+</span><span class="cm">                     *参数1 代理对象
+</span><span class="cm">                     *参数2 代理对象当前执行的方法描述（反射）
+</span><span class="cm">                     *参数3 方法参数
+</span><span class="cm">                     **/</span>
+					<span class="nd">@Override</span>
+					<span class="kd">public</span> <span class="n">Object</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">Object</span> <span class="n">proxy</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+						<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;proxy service before ........&#34;</span><span class="o">);</span>					
+				        <span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">userService</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>							
+						<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;proxy service after ........&#34;</span><span class="o">);</span>							
+					    <span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
+					<span class="o">}</span>
+                    
+				<span class="o">});</span>
+        <span class="k">return</span> <span class="n">proxyService</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>测试类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="n">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserServiceImpl</span><span class="o">();</span>
+    <span class="n">ProxyService</span> <span class="n">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ProxyService</span><span class="o">(</span><span class="n">userService</span><span class="o">);</span>
+    <span class="n">proxy</span><span class="o">.</span><span class="na">addUser</span><span class="o">();</span>  
+<span class="o">}</span>
+</code></pre></div><p>从上面的代码可以看出动态代理创建在运行期，牺牲了运行效率，但不用创建大量的代理类，使用相对的更加灵活</p>
+<h2 id="spring中的aop">Spring中的Aop</h2>
+<h3 id="aop的相关概念">AOP的相关概念</h3>
+<table>
+<thead>
+<tr>
+<th>AOP术语</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>target</td>
+<td>目标类，即被代理对象</td>
+</tr>
+<tr>
+<td>joinpoint</td>
+<td>连接点，即目标类可能被拦截的方法</td>
+</tr>
+<tr>
+<td>pointcut</td>
+<td>切入点，即目标类被拦截的方法</td>
+</tr>
+<tr>
+<td>advice</td>
+<td>通知/增强，增强代码</td>
+</tr>
+<tr>
+<td>proxy</td>
+<td>代理类</td>
+</tr>
+<tr>
+<td>weaving</td>
+<td>织入，把advice和target结合生成proxy代理类的过程</td>
+</tr>
+<tr>
+<td>aspect</td>
+<td>切面，pointcut和advice形成的抽象切面</td>
+</tr>
+</tbody>
+</table>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://s1.ax1x.com/2020/09/06/weW70f.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="spring-aop的原理">Spring AOP的原理</h3>
+<p>Aop底层使用代理模式实现</p>
+<p>若目标类实现了相关接口，则使用JDK的动态代理实现</p>
+<p>若目标类未实现相关接口，则使用CGLIB字节码增强实现代理</p>
+<h3 id="cglib-jdk两种实现方式">CGLIB JDK两种实现方式</h3>
+<p>CGLIB不要求目标类实现相关接口，但要求目标类必须可继承且被代理的方法必须可以重写。</p>
+<p>这主要因为CGLIB是通过反射实现的动态代理，同时代理对象继承了目标类并添加了拦截器相关方法。</p>
+<p>当用户调用代理类的方法时会先经过拦截器然后再去调用目标类的方法</p>
+<p>介绍对应代码之前需要准备一个Advice通知类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAdvice</span> <span class="o">{</span>
+	
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;before.........&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+	
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">after</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;after.........&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h4 id="内部类实现">内部类实现</h4>
+<p>CGLIB代理类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAspectCGLib</span> <span class="o">{</span>
+	
+	<span class="kd">public</span> <span class="kd">static</span> <span class="n">UserServiceImpl</span> <span class="nf">createService</span><span class="o">()</span> <span class="o">{</span>
+		<span class="kd">final</span> <span class="n">UserServiceImpl</span> <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserServiceImpl</span><span class="o">();</span>
+		<span class="kd">final</span> <span class="n">MyAdvice</span> <span class="n">myAdvice</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyAdvice</span><span class="o">();</span>
+		
+		<span class="n">Enhancer</span> <span class="n">enhancer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Enhancer</span><span class="o">();</span>
+		
+		<span class="n">enhancer</span><span class="o">.</span><span class="na">setSuperclass</span><span class="o">(</span><span class="n">userService</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
+		
+		<span class="n">enhancer</span><span class="o">.</span><span class="na">setCallback</span><span class="o">(</span><span class="k">new</span> <span class="n">MethodInterceptor</span><span class="o">()</span> <span class="o">{</span>
+			
+            <span class="cm">/**
+</span><span class="cm">             *参数1 代理对象
+</span><span class="cm">             *参数2 代理对象当前执行的方法描述（反射）
+</span><span class="cm">             *参数3 方法参数
+</span><span class="cm">             *参数4 方法代理对象
+</span><span class="cm">             **/</span>
+			<span class="nd">@Override</span>
+			<span class="kd">public</span> <span class="n">Object</span> <span class="nf">intercept</span><span class="o">(</span><span class="n">Object</span> <span class="n">proxy</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">,</span> <span class="n">MethodProxy</span> <span class="n">methodProxy</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+				    
+					<span class="n">myAdvice</span><span class="o">.</span><span class="na">before</span><span class="o">();</span>					
+					
+					<span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">methodProxy</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">userService</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>	
+					<span class="n">myAdvice</span><span class="o">.</span><span class="na">after</span><span class="o">();</span>
+					
+					<span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
+			<span class="o">}</span>
+		<span class="o">});</span>
+		
+		<span class="n">UserServiceImpl</span> <span class="n">proxyService</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserServiceImpl</span><span class="o">)</span> <span class="n">enhancer</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
+		<span class="k">return</span> <span class="n">proxyService</span><span class="o">;</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div><p>测试类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="n">userService</span> <span class="o">=</span> <span class="n">MyAspectCGLib</span><span class="o">.</span><span class="na">createService</span><span class="o">();</span>
+    <span class="n">userService</span><span class="o">.</span><span class="na">addUser</span><span class="o">();</span>
+    <span class="n">userService</span><span class="o">.</span><span class="na">deleteUser</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><h4 id="拦截器实现">拦截器实现</h4>
+<p>CGLIB代理类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CGLibInterceptor</span> <span class="kd">implements</span> <span class="n">MethodInterceptor</span><span class="o">{</span>
+
+	<span class="kd">private</span>  <span class="n">Enhancer</span> <span class="n">enhancer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Enhancer</span><span class="o">();</span>
+	<span class="kd">private</span>  <span class="n">MyAdvice</span> <span class="n">myAdvice</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyAdvice</span><span class="o">();</span>
+    
+	<span class="kd">public</span>  <span class="n">Object</span> <span class="nf">setProxy</span><span class="o">(</span><span class="n">Class</span> <span class="n">clazz</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">enhancer</span><span class="o">.</span><span class="na">setSuperclass</span><span class="o">(</span><span class="n">clazz</span><span class="o">);</span>
+		<span class="n">enhancer</span><span class="o">.</span><span class="na">setCallback</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+		<span class="k">return</span> <span class="n">enhancer</span><span class="o">.</span><span class="na">create</span><span class="o">();</span>
+	<span class="o">}</span>
+	
+	
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="n">Object</span> <span class="nf">intercept</span><span class="o">(</span><span class="n">Object</span> <span class="n">proxy</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">,</span> <span class="n">MethodProxy</span> <span class="n">methodProxy</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+		<span class="n">myAdvice</span><span class="o">.</span><span class="na">before</span><span class="o">();</span>
+		<span class="n">Object</span> <span class="n">result</span> <span class="o">=</span> <span class="n">methodProxy</span><span class="o">.</span><span class="na">invokeSuper</span><span class="o">(</span><span class="n">proxy</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+		<span class="n">myAdvice</span><span class="o">.</span><span class="na">after</span><span class="o">();</span>
+		<span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div><p>测试类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="n">CGLibInterceptor</span> <span class="n">cglibInterceptor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CGLibInterceptor</span><span class="o">();</span>
+		<span class="n">userService</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserService</span><span class="o">)</span> <span class="n">cglibInterceptor</span><span class="o">.</span><span class="na">setProxy</span><span class="o">(</span><span class="n">UserServiceImpl</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+		<span class="n">userService</span><span class="o">.</span><span class="na">addUser</span><span class="o">();</span>
+		<span class="n">userService</span><span class="o">.</span><span class="na">deleteUser</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><h4 id="小结">小结</h4>
+<p>通过上面两个例子我们可以看出，代理类对目标类userService的addUser和deleteUser进行了代理增强，这两个方法就是AOP的切入点，而userService中全部方法为AOP的连接点。</p>
+<p>在代理类中，CGLIB在拦截方法中将Advice的相关逻辑与目标类的具体方法进行了结合形成了一个抽象的面这就是AOP的切面，通过invoke的核心字眼也可以很快判断出使用了Java的反射机制，虽然牺牲了部分效率但是却不需要重复创建大量的代理类，使用起来更加的灵活。</p>
+<h3 id="spring-aop具体实现">Spring AOP具体实现</h3>
+<p>执行具体代码之前需要对环境进行准备</p>
+<ul>
+<li>jar包：spring-beans 、spring-core、spring-context、spring-expression、spring-aop、spring-aspects、aspectjweaver</li>
+<li>配置文件classpath下的applicationContext.xml</li>
+<li>相关类</li>
+</ul>
+<p>目标类接口</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserService</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">addUser</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>目标类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImpl</span> <span class="kd">implements</span> <span class="n">UserService</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">addUser</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;ioc add user&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>通知类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm"> *切面类要实现对应的接口，并实现对应抽象方法
+</span><span class="cm"> *MethodBeforeAdvice 前置通知 运行在执行目标类方法之前 可获得方法参数
+</span><span class="cm"> *afterReturning	后置通知 运行在执行目标类方法之后 可获得返回值
+</span><span class="cm"> *MethodInterceptor 运行在执行目标方法前后 
+</span><span class="cm"> **/</span>    
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyAspectInterceptor</span> <span class="kd">implements</span> <span class="n">MethodInterceptor</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="n">Object</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">MethodInvocation</span> <span class="n">mi</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;proxy auto  before........&#34;</span><span class="o">);</span>
+		
+		<span class="n">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">mi</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
+		
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;proxy auto  after........&#34;</span><span class="o">);</span>
+
+		<span class="k">return</span> <span class="n">obj</span><span class="o">;</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h4 id="半自动">半自动</h4>
+<p>applicationContext.xml</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;userService&#34;</span> <span class="na">class=</span><span class="s">&#34;com.jun.service.impl.UserServiceImpl&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span> 
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;myAdvice&#34;</span> <span class="na">class=</span><span class="s">&#34;com.jun.interceptor.MyAspectInterceptor&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+    
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;proxyService&#34;</span> <span class="na">class=</span><span class="s">&#34;org.springframework.aop.framework.ProxyFactoryBean&#34;</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;interfaces&#34;</span> <span class="na">value=</span><span class="s">&#34;com.jun.service.UserService&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+	<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;target&#34;</span> <span class="na">ref=</span><span class="s">&#34;userService&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+	<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;interceptorNames&#34;</span> <span class="na">value=</span><span class="s">&#34;myAdvice&#34;</span><span class="nt">&gt;&lt;/property&gt;</span>
+<span class="nt">&lt;/bean&gt;</span> 
+</code></pre></div><p>测试类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">PATH</span> <span class="o">=</span><span class="s">&#34;applicationContext.xml&#34;</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">ApplicationContext</span> <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="n">PATH</span><span class="o">);</span>
+	<span class="n">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserService</span><span class="o">)</span> <span class="n">applicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;proxyService&#34;</span><span class="o">);</span>
+	<span class="n">userService</span><span class="o">.</span><span class="na">deleteUser</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><h4 id="全自动">全自动</h4>
+<p>applicationContext.xml</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;userService&#34;</span> <span class="na">class=</span><span class="s">&#34;com.jun.service.impl.UserServiceImpl&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span> 
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;myAdvice&#34;</span> <span class="na">class=</span><span class="s">&#34;com.jun.interceptor.MyAspectInterceptor&#34;</span><span class="nt">&gt;&lt;/bean&gt;</span>
+
+<span class="nt">&lt;aop:config</span> <span class="na">proxy-target-class=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+    <span class="c">&lt;!--  * com.jun.service.impl.*.*(..)  --&gt;</span>
+    <span class="c">&lt;!-- 任意返回值 包.任意类.任意方法(任意参数)--&gt;</span>
+	<span class="nt">&lt;aop:pointcut</span> <span class="na">expression=</span><span class="s">&#34;execution(* com.jun.service.impl.*.*(..))&#34;</span> <span class="na">id=</span><span class="s">&#34;myPointCut&#34;</span><span class="nt">/&gt;</span>
+	<span class="nt">&lt;aop:advisor</span> <span class="na">advice-ref=</span><span class="s">&#34;myAdvice&#34;</span> <span class="na">pointcut-ref=</span><span class="s">&#34;myPointCut&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/aop:config&gt;</span>
+</code></pre></div><p>测试类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">PATH</span> <span class="o">=</span> <span class="s">&#34;applicationContext.xml&#34;</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">ApplicationContext</span> <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="n">PATH</span><span class="o">);</span>
+	<span class="n">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserService</span><span class="o">)</span> <span class="n">applicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;userService&#34;</span><span class="o">);</span>
+	<span class="n">userService</span><span class="o">.</span><span class="na">deleteUser</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><h4 id="注解">注解</h4>
+<p>applicationContext.xml</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 开启注解扫描 --&gt;</span>
+<span class="nt">&lt;context:component-scan</span> <span class="na">base-package=</span><span class="s">&#34;com.jun&#34;</span><span class="nt">/&gt;</span>
+<span class="c">&lt;!-- 开启AOP注解 --&gt;</span>
+<span class="nt">&lt;aop:aspectj-autoproxy/&gt;</span>
+</code></pre></div><p>目标类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//将目标类加入到ioc容器中
+</span><span class="c1"></span><span class="nd">@Component</span><span class="o">(</span><span class="s">&#34;annoService&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImpl</span> <span class="kd">implements</span> <span class="n">UserService</span><span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">addUser</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;ioc add user&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>通知类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//标明这是一个切面类
+</span><span class="c1">//将目标类加入到ioc容器中
+</span><span class="c1"></span><span class="nd">@Aspect</span>
+<span class="nd">@Component</span><span class="o">(</span><span class="s">&#34;annotationTest&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AnnotationInterceptor</span> <span class="o">{</span>
+
+    <span class="c1">//方法名随意 此方法作为一个切入点的方法
+</span><span class="c1"></span>	<span class="nd">@Pointcut</span><span class="o">(</span><span class="s">&#34;execution(* com.jun.service.impl.UserServiceImpl.*(..))&#34;</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">pointCutMethod</span><span class="o">()</span> <span class="o">{}</span>	
+	
+    <span class="c1">//注解里面的pointCutMethod()即为上面定义的切入点方法
+</span><span class="c1"></span>	<span class="nd">@Before</span><span class="o">(</span><span class="s">&#34;pointCutMethod()&#34;</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;annotation before.........&#34;</span><span class="o">);</span>
+	<span class="o">}</span>		
+		
+	<span class="nd">@After</span><span class="o">(</span><span class="s">&#34;pointCutMethod()&#34;</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">after</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;annotation after...........&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+	
+	<span class="nd">@Around</span><span class="o">(</span><span class="s">&#34;pointCutMethod()&#34;</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">around</span><span class="o">(</span><span class="n">ProceedingJoinPoint</span> <span class="n">pjp</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;around before..........&#34;</span><span class="o">);</span>
+		<span class="n">pjp</span><span class="o">.</span><span class="na">proceed</span><span class="o">();</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;around after.........&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>测试类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">PATH</span> <span class="o">=</span> <span class="s">&#34;applicationContext.xml&#34;</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">ApplicationContext</span> <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassPathXmlApplicationContext</span><span class="o">(</span><span class="n">PATH</span><span class="o">);</span>
+	<span class="n">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="o">(</span><span class="n">UserService</span><span class="o">)</span> <span class="n">applicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;annoService&#34;</span><span class="o">);</span>
+	<span class="n">userService</span><span class="o">.</span><span class="na">deleteUser</span><span class="o">();</span>
+	<span class="n">userService</span><span class="o">.</span><span class="na">addUser</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div>
+      </div><blockquote class="post-copyright">
+  <div class="content">
+      <span class="post-time">
+        最后更新时间：
+        <time datetime="2020-03-05 00:00:00 &#43;0000 UTC" itemprop="dateUpdated">
+            2020年03月05日
+        </time>
+    </span>
+    <br>
+    原始链接：
+    <a href="https://scp131.github.io/spring-aop/" target="_blank" rel="external">
+      https://scp131.github.io/spring-aop/
+    </a>
+  </div>
+
+  <footer>
+      <a href="https://scp131.github.io/">
+          <img src="/img/avatar.webp" alt="Scp131">
+          Scp131
+      </a>
+  </footer>
+</blockquote><div class="post-footer" id="post-footer">
+<ul class="article-tag-list">
+&nbsp;
+      <li class="article-tag-list-item">
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/spring/">
+            Spring 
+          </a>
+        </li>
+      <li class="article-tag-list-item">
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/aop/">
+            AOP 
+          </a>
+        </li>
+      
+</ul><div class="page-share-wrap"><div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2fspring-aop%2f&title=AOP%e5%8f%8a%e7%9b%b8%e5%85%b3%e5%8e%9f%e7%90%86%e6%8e%a2%e7%a9%b6&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2fspring-aop%2f&title=AOP%e5%8f%8a%e7%9b%b8%e5%85%b3%e5%8e%9f%e7%90%86%e6%8e%a2%e7%a9%b6&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2fspring-aop%2f" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=AOP%e5%8f%8a%e7%9b%b8%e5%85%b3%e5%8e%9f%e7%90%86%e6%8e%a2%e7%a9%b6&url=https%3a%2f%2fscp131.github.io%2fspring-aop%2f&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2fspring-aop%2f" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+ 
+<a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+    <i class="icon icon-share-alt icon-lg"></i>
+  </a>    
+</div> </div>
+
+    </div><nav class="post-nav flex-row flex-justify-between ">
+      
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/docker/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Docker</h4>
+      </a>
+    </div><div class="waves-block waves-effect next">
+      <a href="/dontstrave/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">饥荒云服务器搭建教程</h4>
+      </a>
+    </div></nav><div class="comments vcomment v" id="comments"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#comments',
+        notify: 'false',
+        verify: 'false',
+        appId: "OIMzeDHmePmzFKoz8XjwiiIJ-gzGzoHsz",
+        appKey: "H5k568nOnKRYMa48PiCWQEk9",
+        avatar: "retro",
+        placeholder: "请填写邮箱信息以便及时收到回复哦(。・∀・)ノ",
+        pageSize: "10"
+    })
+</script></article>
+</div><footer class="footer">
+          
+    <div class="top">
+        <p>
+            <span>
+              <a href="/index.xml" target="_blank" class="rss" title="rss" rel="noopener noreffer me"><i class="icon icon-lg icon-rss"></i></a>
+            </span>
+            <span>
+              博客内容遵循 
+              <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a>
+            </span>
+        </p>
+    </div>
+    
+    <div class="bottom">
+        <p>
+          <span>Scp131&copy;2021
+                  
+          </span>
+          
+          <span>
+              
+              <a href="http://www.miitbeian.gov.cn/" target="_blank">豫ICP备123456789号-1</a>
+                
+              <br>
+              
+              Power by <a href="https://gohugo.io/" target="_blank">Hugo</a> 
+              Theme 
+              <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+          </span>
+        </p>
+    </div>
+</footer></main>
+        <div class="mask" id="mask"></div><a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light">
+  <span class="icon icon-lg icon-chevron-up"></span>
+</a><div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=&title=Scp%20131&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=&title=Scp%20131&sharesource=qzone" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Scp%20131&url=&via=xiaomosama" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+    
+ <div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="/img/wx.png" alt="微信分享二维码">
+</div>
+
+</body><div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+<script type="application/javascript" src="/lib/waves/waves.min.js"></script>
+
+
+
+
+<script type="application/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script>
+
+
+<script type="text/javascript">
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true, SINGLE:  true  };
+</script>
+
+
+<script type="application/javascript" src="/js/main.min.js"></script>
+
+
+<script type="application/javascript" src="/js/search.min.js" async></script></html>

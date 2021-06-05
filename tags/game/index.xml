@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Game on Scp 131</title>
+    <link>https://scp131.github.io/tags/game/</link>
+    <description>Recent content in Game on Scp 131</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
+    <webMaster>1355337315@qq.com (Kmiss)</webMaster>
+    <lastBuildDate>Fri, 20 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/tags/game/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>饥荒云服务器搭建教程</title>
+      <link>https://scp131.github.io/dontstrave/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/dontstrave/</guid>
+      <description>环境准备 饥荒的服务器项目为32位，如果系统为64位</description>
+    </item>
+    
+  </channel>
+</rss>
