@@ -11,10 +11,10 @@
     <lastBuildDate>Sat, 17 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/tags/model/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Model类常用操作</title>
-      <link>https://scp131.github.io/json/</link>
+      <link>https://scp131.github.io/model/</link>
       <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
       <author>1355337315@qq.com (Kmiss)</author>
-      <guid>https://scp131.github.io/json/</guid>
+      <guid>https://scp131.github.io/model/</guid>
       <description>Jackson 在使用序列化反序列化之前保证model类有Set</description>
     </item>
     

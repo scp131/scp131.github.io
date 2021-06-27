@@ -36,14 +36,5 @@
       <description>注解 元注解 @Inherited 注解可以被子类继承 @Documented 文档注释会包含在j</description>
     </item>
     
-    <item>
-      <title>Lambda</title>
-      <link>https://scp131.github.io/lambda/</link>
-      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
-      <author>1355337315@qq.com (Kmiss)</author>
-      <guid>https://scp131.github.io/lambda/</guid>
-      <description>List新增方法 forEach users.forEach(u -&amp;gt; { System.out.println(u.getName + &amp;#34;----&amp;gt;&amp;#34; + u.getAge); }); users.forEach(System.out::println); removeIf users.remove(u -&amp;gt; u.getAge()&amp;gt;3); replaceAll users.replaceAll(u</description>
-    </item>
-    
   </channel>
 </rss>

@@ -11,7 +11,7 @@
         <meta property="og:url" content="https://scp131.github.io">
         <meta property="og:site_name" content="Scp131 Blog">
         <meta property="og:description" content="">
-        <title>Docker | Scp 131</title>
+        <title>SecureCRT常用设置 | Scp 131</title>
         <link rel="shortcut icon" href="/favicon.ico">
         <link rel="canonical" href="https://scp131.github.io">
 
@@ -81,7 +81,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Docker</div>
+        <div class="flex-col header-title ellipsis">SecureCRT常用设置</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -103,13 +103,13 @@
 <header class="content-header post-header">
     
     <div class="container fade-scale">
-        <h1 class="title">Docker</h1>
+        <h1 class="title">SecureCRT常用设置</h1>
         <h5 class="subtitle">
             
             
             
-              <time datetime="2020-11-24 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
-                2020年11月24日
+              <time datetime="2021-06-27 00:00:00 &#43;0000 UTC" itemprop="datePublished" class="page-time">
+                2021年06月27日
               </time>
             
         </h5>
@@ -118,7 +118,20 @@
     
 </header>
 <div class="container body-wrap"><div class="domHide">
-   <nav id="TableOfContents"></nav>
+   <nav id="TableOfContents">
+  <ul>
+    <li><a href="#全局配置">全局配置</a></li>
+    <li><a href="#默认会话">默认会话</a>
+      <ul>
+        <li><a href="#设置仿真和缓冲区">设置仿真和缓冲区</a></li>
+        <li><a href="#设置字体">设置字体</a></li>
+        <li><a href="#设置光标颜色">设置光标颜色</a></li>
+        <li><a href="#配置操作日志">配置操作日志</a></li>
+        <li><a href="#设置文件上传和下载目录">设置文件上传和下载目录</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 </div>
 
 <aside class="post-widget">
@@ -129,17 +142,17 @@
   <article id="post-multipart-x-mixed-replace" class="post-article article-type-post fade" itemprop="blogPost">
     <div class="post-card">
     
-      <h1 class="post-card-title">Docker</h1><div class="post-meta">
+      <h1 class="post-card-title">SecureCRT常用设置</h1><div class="post-meta">
              
      
-     <time class="post-time" title="2020-11-24 00:00:00 &#43;0000 UTC" datetime="2020-11-24 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
-        2020年11月24日
+     <time class="post-time" title="2021-06-27 00:00:00 &#43;0000 UTC" datetime="2021-06-27 00:00:00 &#43;0000 UTC"  itemprop="datePublished">
+        2021年06月27日
      </time>
      
      
      <ul class="article-category-list">
      <li class="article-category-list-item">
-            <a class="article-category-list-link" href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E5%A4%87%E5%BF%98%E5%BD%95/">我的备忘录</a>
+            <a class="article-category-list-link" href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E8%8F%9C%E9%B8%9F%E6%97%A5%E8%AE%B0/">我的菜鸟日记</a>
           </li>
         
         
@@ -150,45 +163,83 @@
         <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv">233</span>
     </span>
 </div><div class="post-content" id="post-content" itemprop="postContent">
-          <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">yum remove docker <span class="se">\
-</span><span class="se"></span>                  docker-client <span class="se">\
-</span><span class="se"></span>                  docker-client-latest <span class="se">\
-</span><span class="se"></span>                  docker-common <span class="se">\
-</span><span class="se"></span>                  docker-latest <span class="se">\
-</span><span class="se"></span>                  docker-latest-logrotate <span class="se">\
-</span><span class="se"></span>                  docker-logrotate <span class="se">\
-</span><span class="se"></span>                  docker-engine
-
-yum install -y yum-utils
-
-yum-config-manager <span class="se">\
-</span><span class="se"></span>    --add-repo <span class="se">\
-</span><span class="se"></span>    http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-
-yum makecache  fast
-
-yum install docker-ce docker-ce-cli containerd.io
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">vim /etc/docker/daemon.json
-
-<span class="o">{</span>
-    <span class="s2">&#34;registry-mirrors&#34;</span>:<span class="o">[</span><span class="s2">&#34;https://almtd3fa.mirror.aliyuncs.com&#34;</span><span class="o">]</span>      
-<span class="o">}</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">yum remove docker-ce docker-ce-cli containerd.io
-
-rm -rf /var/lib/docker
-</code></pre></div>
+          <h2 id="全局配置">全局配置</h2>
+<p>更改配置文件的默认路径
+<br/>
+<figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://raw.githubusercontent.com/scp131/blog-images/master/img/blog/SecurecCRT/SecureCRT-1.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h2 id="默认会话">默认会话</h2>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://raw.githubusercontent.com/scp131/blog-images/master/img/blog/SecurecCRT/SecureCRT-2.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="设置仿真和缓冲区">设置仿真和缓冲区</h3>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://raw.githubusercontent.com/scp131/blog-images/master/img/blog/SecurecCRT/SecureCRT-3.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="设置字体">设置字体</h3>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://raw.githubusercontent.com/scp131/blog-images/master/img/blog/SecurecCRT/SecureCRT-4png.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="设置光标颜色">设置光标颜色</h3>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://raw.githubusercontent.com/scp131/blog-images/master/img/blog/SecurecCRT/SecureCRT-5.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="配置操作日志">配置操作日志</h3>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://raw.githubusercontent.com/scp131/blog-images/master/img/blog/SecurecCRT/SecureCRT-6.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<h3 id="设置文件上传和下载目录">设置文件上传和下载目录</h3>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://raw.githubusercontent.com/scp131/blog-images/master/img/blog/SecurecCRT/SecureCRT-7.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
+<p><figure class="image-bubble">
+  <div class="img-lightbox">
+     <div class="overlay"></div>
+     <img src="https://raw.githubusercontent.com/scp131/blog-images/master/img/blog/SecurecCRT/SecureCRT-8.png" title=" ">
+  </div>
+  <div class="image-caption">  </div>
+</figure></p>
       </div><blockquote class="post-copyright">
   <div class="content">
       <span class="post-time">
         最后更新时间：
-        <time datetime="2019-10-22 18:46:47 &#43;0800 CST" itemprop="dateUpdated">
-            2019年10月22日
+        <time datetime="2021-06-27 00:00:00 &#43;0000 UTC" itemprop="dateUpdated">
+            2021年06月27日
         </time>
     </span>
     <br>
     原始链接：
-    <a href="https://scp131.github.io/docker/" target="_blank" rel="external">
-      https://scp131.github.io/docker/
+    <a href="https://scp131.github.io/securecrt/" target="_blank" rel="external">
+      https://scp131.github.io/securecrt/
     </a>
   </div>
 
@@ -202,15 +253,15 @@ rm -rf /var/lib/docker
 <ul class="article-tag-list">
 &nbsp;
       <li class="article-tag-list-item">
-          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/docker/">
-            docker 
+          <a class="article-tag-list-link waves-effect waves-button" href="https://scp131.github.io/tags/securecrt/">
+            SecureCRT 
           </a>
         </li>
       
 </ul><div class="page-share-wrap"><div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2fdocker%2f&title=Docker&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fscp131.github.io%2fsecurecrt%2f&title=SecureCRT%e5%b8%b8%e7%94%a8%e8%ae%be%e7%bd%ae&pic=https://s1.ax1x.com/2020/04/15/JPLLrj.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -220,22 +271,22 @@ rm -rf /var/lib/docker
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2fdocker%2f&title=Docker&sharesource=qzone" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fscp131.github.io%2fsecurecrt%2f&title=SecureCRT%e5%b8%b8%e7%94%a8%e8%ae%be%e7%bd%ae&sharesource=qzone" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2fdocker%2f" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fscp131.github.io%2fsecurecrt%2f" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Docker&url=https%3a%2f%2fscp131.github.io%2fdocker%2f&via=xiaomosama" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=SecureCRT%e5%b8%b8%e7%94%a8%e8%ae%be%e7%bd%ae&url=https%3a%2f%2fscp131.github.io%2fsecurecrt%2f&via=xiaomosama" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2fdocker%2f" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https%3a%2f%2fscp131.github.io%2fsecurecrt%2f" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -248,18 +299,12 @@ rm -rf /var/lib/docker
   </a>    
 </div> </div>
 
-    </div><nav class="post-nav flex-row flex-justify-between ">
+    </div><nav class="post-nav flex-row flex-justify-between  flex-row-reverse ">
       
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/securecrt/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">SecureCRT常用设置</h4>
-      </a>
-    </div><div class="waves-block waves-effect next">
-      <a href="/spring-aop/" id="post-next" class="post-nav-link">
+  <div class="waves-block waves-effect next">
+      <a href="/docker/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">AOP及相关原理探究</h4>
+        <h4 class="title">Docker</h4>
       </a>
     </div></nav><div class="comments vcomment v" id="comments"></div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>

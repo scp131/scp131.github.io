@@ -46,20 +46,11 @@
     </item>
     
     <item>
-      <title>SpringBoot备忘录(前端)</title>
+      <title>SpringBoot搭建SSM</title>
       <link>https://scp131.github.io/springboot-note-3/</link>
       <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
       <author>1355337315@qq.com (Kmiss)</author>
       <guid>https://scp131.github.io/springboot-note-3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SpringBoot搭建SSM</title>
-      <link>https://scp131.github.io/springboot-note-4/</link>
-      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
-      <author>1355337315@qq.com (Kmiss)</author>
-      <guid>https://scp131.github.io/springboot-note-4/</guid>
       <description>集成lombok idea下载插件lombok pom.xml &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.projectlombok&amp;lt;/groupId&amp;gt;</description>
     </item>
     

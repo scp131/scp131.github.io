@@ -8,7 +8,16 @@
     <language>zh-CN</language>
     <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
     <webMaster>1355337315@qq.com (Kmiss)</webMaster>
-    <lastBuildDate>Thu, 05 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E8%8F%9C%E9%B8%9F%E6%97%A5%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/categories/%E6%88%91%E7%9A%84%E8%8F%9C%E9%B8%9F%E6%97%A5%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SecureCRT常用设置</title>
+      <link>https://scp131.github.io/securecrt/</link>
+      <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/securecrt/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>AOP及相关原理探究</title>
       <link>https://scp131.github.io/spring-aop/</link>
@@ -47,10 +56,10 @@
     
     <item>
       <title>Model类常用操作</title>
-      <link>https://scp131.github.io/json/</link>
+      <link>https://scp131.github.io/model/</link>
       <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
       <author>1355337315@qq.com (Kmiss)</author>
-      <guid>https://scp131.github.io/json/</guid>
+      <guid>https://scp131.github.io/model/</guid>
       <description>Jackson 在使用序列化反序列化之前保证model类有Set</description>
     </item>
     
@@ -60,7 +69,7 @@
       <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
       <author>1355337315@qq.com (Kmiss)</author>
       <guid>https://scp131.github.io/idea/</guid>
-      <description>配置idea 我的idea常用配置 1、基本配置 配置U</description>
+      <description>idea常用配置 1、基本配置 配置UTF-8 显示行号</description>
     </item>
     
   </channel>

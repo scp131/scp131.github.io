@@ -206,23 +206,25 @@ ps -ef <span class="p">|</span> grep test.jar
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;packaging&gt;</span>war<span class="nt">&lt;/packaging&gt;</span>
 </code></pre></div><p>修改启动类，重写初始化方法</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ServletInitializer</span> <span class="kd">extends</span> <span class="n">SpringBootServletInitializer</span><span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="n">SpringApplicationBuilder</span> <span class="nf">configure</span><span class="o">(</span><span class="n">SpringApplicationBuilder</span> <span class="n">builder</span><span class="o">){</span>
-        <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">sources</span><span class="o">(</span><span class="n">BootLaunchApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-    <span class="o">}</span>
+   <span class="nd">@Override</span>
+   <span class="kd">protected</span> <span class="n">SpringApplicationBuilder</span> <span class="nf">configure</span><span class="o">(</span><span class="n">SpringApplicationBuilder</span> <span class="n">builder</span><span class="o">){</span>
+       <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">sources</span><span class="o">(</span><span class="n">BootLaunchApplication</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><p>去除嵌入式Tomcat依赖</p>
+</code></pre></div><p>`
+去除嵌入式Tomcat依赖</p>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;exclusions&gt;</span>
-        <span class="nt">&lt;exclusion&gt;</span>
-            <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
-            <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;/exclusion&gt;</span>
-    <span class="nt">&lt;/exclusions&gt;</span>
+   <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+   <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+   <span class="nt">&lt;exclusions&gt;</span>
+       <span class="nt">&lt;exclusion&gt;</span>
+           <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+           <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-tomcat<span class="nt">&lt;/artifactId&gt;</span>
+       <span class="nt">&lt;/exclusion&gt;</span>
+   <span class="nt">&lt;/exclusions&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
-</code></pre></div><p>注意：当你排除了嵌入式的tomcat容器，相关的依赖也会被删除比如Servlet依赖</p>
+</code></pre></div><p>`
+注意：当你排除了嵌入式的tomcat容器，相关的依赖也会被删除比如Servlet依赖</p>
 <p>然后使用maven先clean然后package，将打成的war包放到tomcat的Webapp目录下即可</p>
 </li>
 </ol>

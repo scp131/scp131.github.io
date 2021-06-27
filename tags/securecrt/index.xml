@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SecureCRT on Scp 131</title>
+    <link>https://scp131.github.io/tags/securecrt/</link>
+    <description>Recent content in SecureCRT on Scp 131</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
+    <webMaster>1355337315@qq.com (Kmiss)</webMaster>
+    <lastBuildDate>Sun, 27 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/tags/securecrt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SecureCRT常用设置</title>
+      <link>https://scp131.github.io/securecrt/</link>
+      <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/securecrt/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

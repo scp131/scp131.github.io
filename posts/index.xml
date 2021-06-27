@@ -8,7 +8,16 @@
     <language>zh-CN</language>
     <managingEditor>1355337315@qq.com (Kmiss)</managingEditor>
     <webMaster>1355337315@qq.com (Kmiss)</webMaster>
-    <lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://scp131.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SecureCRT常用设置</title>
+      <link>https://scp131.github.io/securecrt/</link>
+      <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
+      <author>1355337315@qq.com (Kmiss)</author>
+      <guid>https://scp131.github.io/securecrt/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Docker</title>
       <link>https://scp131.github.io/docker/</link>
@@ -82,15 +91,6 @@
     </item>
     
     <item>
-      <title>Lambda</title>
-      <link>https://scp131.github.io/lambda/</link>
-      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
-      <author>1355337315@qq.com (Kmiss)</author>
-      <guid>https://scp131.github.io/lambda/</guid>
-      <description>List新增方法 forEach users.forEach(u -&amp;gt; { System.out.println(u.getName + &amp;#34;----&amp;gt;&amp;#34; + u.getAge); }); users.forEach(System.out::println); removeIf users.remove(u -&amp;gt; u.getAge()&amp;gt;3); replaceAll users.replaceAll(u</description>
-    </item>
-    
-    <item>
       <title>SpringBoot自动配置原理</title>
       <link>https://scp131.github.io/springboot-auto/</link>
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
@@ -101,10 +101,10 @@
     
     <item>
       <title>Model类常用操作</title>
-      <link>https://scp131.github.io/json/</link>
+      <link>https://scp131.github.io/model/</link>
       <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
       <author>1355337315@qq.com (Kmiss)</author>
-      <guid>https://scp131.github.io/json/</guid>
+      <guid>https://scp131.github.io/model/</guid>
       <description>Jackson 在使用序列化反序列化之前保证model类有Set</description>
     </item>
     
@@ -114,16 +114,7 @@
       <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
       <author>1355337315@qq.com (Kmiss)</author>
       <guid>https://scp131.github.io/idea/</guid>
-      <description>配置idea 我的idea常用配置 1、基本配置 配置U</description>
-    </item>
-    
-    <item>
-      <title>算法备忘录</title>
-      <link>https://scp131.github.io/algorithm-note/</link>
-      <pubDate>Tue, 21 Aug 2018 00:00:00 +0000</pubDate>
-      <author>1355337315@qq.com (Kmiss)</author>
-      <guid>https://scp131.github.io/algorithm-note/</guid>
-      <description>时间复杂度 O( 1 ) &amp;lt; O( logn ) &amp;lt; O( n ) &amp;lt; O( n^2^ ) 2333 线性表 存</description>
+      <description>idea常用配置 1、基本配置 配置UTF-8 显示行号</description>
     </item>
     
     <item>
@@ -154,20 +145,11 @@
     </item>
     
     <item>
-      <title>SpringBoot备忘录(前端)</title>
+      <title>SpringBoot搭建SSM</title>
       <link>https://scp131.github.io/springboot-note-3/</link>
       <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
       <author>1355337315@qq.com (Kmiss)</author>
       <guid>https://scp131.github.io/springboot-note-3/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SpringBoot搭建SSM</title>
-      <link>https://scp131.github.io/springboot-note-4/</link>
-      <pubDate>Fri, 17 Aug 2018 00:00:00 +0000</pubDate>
-      <author>1355337315@qq.com (Kmiss)</author>
-      <guid>https://scp131.github.io/springboot-note-4/</guid>
       <description>集成lombok idea下载插件lombok pom.xml &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.projectlombok&amp;lt;/groupId&amp;gt;</description>
     </item>
     
